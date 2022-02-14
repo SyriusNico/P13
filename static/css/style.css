@@ -1,0 +1,198 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Nunito', sans-serif;
+}
+
+a{
+	text-decoration: none;
+}
+
+ul{
+	list-style: none;
+}
+
+.header{
+	width: 100%;
+	height: 100vh;
+	background-color: #fff ;
+	position: relative;
+}
+
+.header .navbar{
+	width: 100%;
+	height: 80px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	margin-top: 30px;
+}
+
+.logo img{
+	margin-left: 100px;
+}
+
+.menu ul li{
+	display: inline-block;
+	padding: 0 25px;
+	cursor: pointer;
+	font-size: 19px;
+	font-weight: 700;
+	line-height: 80px;
+	align-items: center;
+}
+
+.login-btn{
+	display: block;
+	font-size: 19px;
+	font-weight: 700;
+	cursor: pointer;
+	border-radius: 30px;
+	background-color: #ffa037;
+	padding: 8px 40px;
+	margin-right: 100px;
+}
+
+.banner{
+	width: 80%;
+	height: 70%;
+	position: absolute;
+	display: flex;
+	top: 25%;
+	left: 150px;
+}
+
+.app-text{
+	display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.app-text h3{
+	margin-top: 100px;
+	font-size: 17px;
+	color: #000;
+	font-weight: 400;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.app-text h1{
+	font-size: 51px;
+	position: relative;
+	color: #000;
+	margin-top: 30px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.app-text p{
+	font-size: 19px;
+	margin: 30px 30px 30px 0;
+	letter-spacing: 1px;
+	color: #000;
+}
+
+.btn-group{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	position: relative;
+}
+
+.btn-group .signup-btn {
+	cursor: pointer;
+	display: block;
+	color: #000;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 700;
+	border-radius: 32px;
+	background-color: #ffa037;
+	padding: 15px 50px;
+	margin: 0 25px;
+}
+
+.btn-group .signin-btn {
+	cursor: pointer;
+	display: block;
+	color: #000;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 700;
+	border-radius: 32px;
+	background-color: #ffa037;
+	padding: 15px 50px;
+}
+
+.app-picture{
+	width: 50%;
+	float: right;
+}
+
+.app-picture img{
+	margin-top: 150px;
+	position: absolute;
+	width: 50%;
+}
+
+.about-service{
+	display: flex;
+	position: absolute;
+	top: 90%;
+	width: 100%;
+	text-align: center;
+	margin-top: 50px;
+	padding: 150px;
+}
+
+
+@media screen and (max-width: 820px){
+	.header{
+		display: flex;
+		flex-direction: column;
+		width: 600px;
+	}
+	
+	.menu ul{
+		display: flex;
+	}
+
+	.banner{
+		display: flex;
+		flex-direction: column;
+	}
+
+	.app-text{
+		width: 100%;
+	}
+
+	.app-picture{
+		width: 100%;
+
+	}
+
+	.app-picture img {
+    margin: 50px;
+    position: relative;
+    width: 80%;
+	}
+
+	.about-service{
+		width: 100%;
+		margin: 50px;
+		top: 120%;
+		padding: 0px;
+	}
+
+	.about-service ul {
+    display: flex;
+    margin: 30px auto;
+    text-align: center;
+    flex-direction: column;
+	}
+}

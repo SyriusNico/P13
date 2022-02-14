@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Markedet</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style-alt.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<a href="#"><img src="{% static '/img/logo.png' %}"></a>
+		</div>
+		<nav>
+			<ul>
+				<li>Home</li>
+				<li>About</li>
+				<li>Contact</li>
+			</ul>
+		</nav>
+		<div class="login-btn">Login</div>
+	</header>
+	<div class="parallax-one"></div>
+	<section class="banner">
+		<div class="banner-text">
+			<div class="line"><hr></div>
+			<h1>Un slogan original</h1>
+			<div class="line"><hr></div>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="btn-group">
+				<button>S'inscrire</button>
+				<button>Se connecter</button>
+			</div>
+		</div>
+		<img class="banner-picture" src="{% static '/img/shopping-online.jpg' %}">
+	</section>
+	<div class="parallax-two"></div>
+	<section class="slider content active">
+		<div class="slider-text">
+			<div class="text1">
+				<h2>Tu aimes les vestes ?</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+				<a href="#" class="more">En savoir plus</a>
+			</div>
+		</div>
+		<div class="slider-picture">
+			<div class="picture1">
+				<img src="{% static '/img/1.jpeg' %}" alt="image02" />
+			</div>
+		</div>
+	</section>
+	<section class="slider content">
+		<div class="slider-text">
+			<div class="text1">
+				<h2>Une bonne paire de basket</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+				<a href="#" class="more">En savoir plus</a>
+			</div>
+		</div>
+		<div class="slider-picture">
+			<div class="picture1">
+				<img src="{% static '/img/2.jpeg' %}" alt="image02" />
+			</div>
+		</div>
+	</section>
+	<section class="slider content">
+		<div class="slider-text">
+			<div class="text1">
+				<h2>Un bon sac à dos</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+				<a href="#" class="more">En savoir plus</a>
+			</div>
+		</div>
+		<div class="slider-picture">
+			<div class="picture1">
+				<img src="{% static '/img/3.jpeg' %}" alt="image02" />
+			</div>
+		</div>
+	</section>
+	<div class="parallax-three"></div>
+	<footer>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</footer>
+	<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
+</body>
+</html>
