@@ -12,6 +12,7 @@ body{
 }
 
 a{
+	color: #000;
 	text-decoration: none;
 }
 
@@ -47,6 +48,18 @@ footer{
 	margin: 5rem;
 	top: 400%;
 	position: absolute;
+}
+
+.login-form {
+	font-size: 19px;	
+}
+
+#valid-text {
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 30px;
+	background-color: #cfae1b;
+	padding: 8px 40px;	
 }
 
 .parallax-one{

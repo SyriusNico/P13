@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section>
+	<div>
+		<form action="{% url 'register' %}" method="post">
+			<center>
+			{% csrf_token %}
+			{{ form | crispy }}
+			<input type="submit" value="Valider" id="valid-text">
+			</center>   
+		</form>
+	</div>
+</section>
+{% endblock %}

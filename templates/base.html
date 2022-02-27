@@ -1,67 +1,107 @@
 <!DOCTYPE html>
-<html>
 {% load static %}
+<html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Markedet</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style-alt.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div class="header">
-		<div class="navbar">
-			<div class="logo">
-				<a href="#"><img src="{% static '/img/logo.png' %}"></a>
-			</div>
-			<div class="menu">
-				<ul>
-					<li>Home</li>
-					<li>Contact</li>
-					<li>About</li>
-				</ul>
-			</div>
-			<div class="login-btn">Login</div>	
+	{% block nav %}
+	<header>
+		<div class="logo">
+			<a href="#"><img src="{% static '/img/logo.png' %}"></a>
 		</div>
-		<div class="banner">
-			<div class="app-text">
-				<h1>Vendez<br>Reprenez</h1>
-				<h3>Offrez une seconde vie au carton du placard</h3>
-				<p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.</p>
-				<div class="btn-group">
-					<div class="signup-btn">S'inscrire</div>
-					<div class="signin-btn">Se connecter</div>
-				</div>
-			</div>
-			<div class="app-picture">
-				<div class="picture">
-					<img src="{% static '/img/shopping-online.jpg' %}">
-				</div>			
-			</div>
-		</div>
-		<div class=""></div>
-		<div class="about-service">
+		<nav>
 			<ul>
-				<li>
-					<img src="{% static '/img/add.png' %}">
-					<h1>Lorem ipsum dolor sit amet</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				</li>
-				<li>
-					<img src="{% static '/img/web.png' %}">
-					<h1>Lorem ipsum dolor sit amet</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				</li>
-				<li>
-					<img src="{% static '/img/test.png' %}">
-					<h1>Lorem ipsum dolor sit amet</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				</li>
+				<li><a href="{% url 'home' %}">Acceuil</a></li>
+				<li><a href="">À propos</a></li>
+				<li><a href="">Contact</a></li>
 			</ul>
+		</nav>
+		{% if user.is_authenticated %}
+		<a class="login-btn" href="{% url 'logout' %}">Se déconnecter</a>
+		{% else %}
+		<a class="login-btn" href="{% url 'login' %}">Se connecter</a>
+		{% endif %}
+	</header>
+	{% endblock %}
+	{% block content %}
+	<div class="parallax-one"></div>
+	<section class="banner">
+		<div class="banner-text">
+			<div class="line"><hr></div>
+			<h1>Un slogan original</h1>
+			<div class="line"><hr></div>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="btn-group">
+				<a class="login-btn" href="{% url 'register' %}">S'inscrire</a>
+				<a class="login-btn" href="{% url 'login' %}">Se connecter</a>
+			</div>
 		</div>
-	</div>
-	<polygon points="150.7,516.8 1.5,258.4 150.7,0 449,0 598.2,258.4 449,516.8 "/>
+		<img class="banner-picture" src="{% static '/img/shopping-online.jpg' %}">
+	</section>
+	<div class="parallax-two"></div>
+	<section class="slider content active">
+		<div class="slider-text">
+			<div class="text1">
+				<h2>Tu aimes les vestes ?</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+				<a href="#" class="more">En savoir plus</a>
+			</div>
+		</div>
+		<div class="slider-picture">
+			<div class="picture1">
+				<img src="{% static '/img/1.jpeg' %}" alt="image02" />
+			</div>
+		</div>
+	</section>
+	<section class="slider content">
+		<div class="slider-text">
+			<div class="text1">
+				<h2>Une bonne paire de basket</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+				<a href="#" class="more">En savoir plus</a>
+			</div>
+		</div>
+		<div class="slider-picture">
+			<div class="picture1">
+				<img src="{% static '/img/2.jpeg' %}" alt="image02" />
+			</div>
+		</div>
+	</section>
+	<section class="slider content">
+		<div class="slider-text">
+			<div class="text1">
+				<h2>Un bon sac à dos</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+				<a href="#" class="more">En savoir plus</a>
+			</div>
+		</div>
+		<div class="slider-picture">
+			<div class="picture1">
+				<img src="{% static '/img/3.jpeg' %}" alt="image02" />
+			</div>
+		</div>
+	</section>
+	<div class="parallax-three"></div>
+	{% endblock%}
+	{% block footer %}
+	<footer>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</footer>
+	{% endblock %}
+	<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
 </body>
 </html>
