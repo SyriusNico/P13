@@ -20,7 +20,11 @@
 		</div>
 		<nav>
 			<ul>
+				{% if user.is_authenticated %}
+				<li><a href="{% url 'category' %}">Acceuil</a></li>
+				{% else %}
 				<li><a href="{% url 'home' %}">Acceuil</a></li>
+				{% endif %}
 				<li><a href="">À propos</a></li>
 				<li><a href="">Contact</a></li>
 			</ul>

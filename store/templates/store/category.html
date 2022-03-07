@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="collection">
+	{% for category in categories  %}
+	<div class="card">
+		<a href="{% url 'products' %}"><h3>{{ category.name }}</h3></a>
+		<img src="{{ category.image }}" alt="{{ category.name }}">
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

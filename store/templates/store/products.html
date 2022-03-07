@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="collection">
+	<div class="side-nav">
+		<ul>
+			{% for category in categories %}
+			<li><h3>{{ category }}</h3></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% for product in product_list %}
+	<div class="card">
+		<h3>{{ product.name }}</h3>
+		<img src="{{ product.image }}" alt="{{ product.name }}">
+		<h3>{{ product.price }}</h3>
+		<p>{{ product.description }}</p>
+		<p>Quantité : {{ product.stock }}</p>
+	</div>
+	{% endfor %}
+</div>
+<ul class="pagination">
+	{% if page_obj.has_previous %}
+	    <li><a href="?page=1">1</a></li>
+	    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+	{% endif %}
+	{% for i in page_obj.paginator.page_range %}
+	    {% if page_obj.number == i %}
+	        <li><span class="page-number">{{ i }}</span></span></li>
+	    {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+	        <li><a href="?page={{ i }}">{{ i }}</a></li>
+	    {% endif %}
+	{% endfor %}
+	{% if page_obj.has_next %}
+	    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+	    <li><a href="?page={{ page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages }}</a></li>
+	{% endif %}
+</ul>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
