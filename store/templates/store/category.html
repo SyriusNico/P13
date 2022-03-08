@@ -5,10 +5,15 @@
 {% block content %}
 <div class="collection">
 	{% for category in categories  %}
-	<div class="card">
+	<form class="category" action = "{% url 'products' %}" method = "get">
+		<input  class="btn-category" type="submit" value="{{ category.name }}" name="category">
+		<br>
+	    <img src="{{ category.image }}" alt="{{ category.name }}">
+	</form>
+<!-- 	<div class="card">
 		<a href="{% url 'products' %}"><h3>{{ category.name }}</h3></a>
 		<img src="{{ category.image }}" alt="{{ category.name }}">
-	</div>
+	</div> -->
 	{% endfor %}
 </div>
 {% endblock %}

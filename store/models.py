@@ -7,7 +7,7 @@ class Category(models.Model):
     image = models.URLField(max_length=255, null=True)
 
     def __str__(self):
-        return self.name
+        return self.id
 
 
 class Product(models.Model):
@@ -21,6 +21,9 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.name

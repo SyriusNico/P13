@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 
 from .models import Product, Category
 
@@ -7,17 +7,20 @@ from .models import Product, Category
 class ProductView(ListView):
 	template_name = 'store/products.html'
 	model = Product
-	paginate_by = 6
+	paginate_by = 12
 	paginate_orphans = 2
 
-	
+
+	def get_category(self):
+		query = self.request.GET.get('category')
+		return query
+
 	def get_context_data(self, *, product_list=None, **kwargs):
 		"""Get the context for this view."""
-		product_list = self.model.objects.all()
-		categories = [
-			'chaussures', 'sport et maillot de bain',
-			'vetements', 'accessoires'
-		]
+		product_list = self.model.objects.all().filter(
+			category__name=self.get_category()
+		)
+		categories = Category.objects.all()
 		queryset = product_list if product_list is not None else self.product_list
 		page_size = self.get_paginate_by(queryset)
 		context_object_name = self.get_context_object_name(queryset)
@@ -28,7 +31,7 @@ class ProductView(ListView):
 				'page_obj': page,
 				'is_paginated': is_paginated,
 				'product_list': queryset,
-				# 'categories' : categories
+				'categories' : categories
 			}
 		else:
 			context = {
@@ -43,8 +46,6 @@ class ProductView(ListView):
 		context.update(kwargs)
 		return super().get_context_data(**context)
 
-
-	
 class CategoryView(ListView):
 	template_name = 'store/category.html'
 	model = Category
