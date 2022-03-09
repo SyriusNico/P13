@@ -1,15 +1,31 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator, EmptyPage
 
 from .models import Product, Category
 
 # Create your views here.
+# class MyPaginator(Paginator):
+# 	def validate_number(self, number):
+# 		try:
+# 			return super().validate_number(number)
+# 		except EmptyPage:
+# 			if int(number) > 1:
+# 				# return the last page
+# 				return self.num_pages
+# 			elif int(number) < 1:
+# 				# return the first page
+# 				return 1
+# 			else:
+# 				raise
+
+
 class ProductView(ListView):
 	template_name = 'store/products.html'
 	model = Product
 	paginate_by = 12
 	paginate_orphans = 2
-
+	# paginator_class = MyPaginator
 
 	def get_category(self):
 		query = self.request.GET.get('category')
@@ -33,6 +49,7 @@ class ProductView(ListView):
 				'product_list': queryset,
 				'categories' : categories
 			}
+			print(type(page))
 		else:
 			context = {
 				'paginator': None,
@@ -41,10 +58,12 @@ class ProductView(ListView):
 				'product_list': queryset,
 				'categories' : categories
 			}
+			print("paginator")
 		if context_object_name is not None:
 			context[context_object_name] = queryset
 		context.update(kwargs)
 		return super().get_context_data(**context)
+
 
 class CategoryView(ListView):
 	template_name = 'store/category.html'

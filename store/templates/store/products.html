@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load page_tags %}
 
 {% block content %}
 <div class="collection">
@@ -16,7 +17,6 @@
 		<ul class="brand-list">
 			<h3>Marques</h3>
 			{% for product in product_list %}
-				{{ range }}
 			<li>{{ product.brand }}</li>
 			{% endfor %}
 		</ul>
@@ -31,21 +31,23 @@
 		</div>
 		{% endfor %}
 		<ul class="pagination">
+	{% if is_paginated %}
 		{% if page_obj.has_previous %}
-		    <li><a href="?page=1">&laquo; Début</a></li>
-		    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+		    <li><a href="?{% param_replace page=1 %}">&laquo; Début</a></li>
+		    <li><a href="?{% param_replace page=page_obj.previous_page_number %}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
 		{% endif %}
 		{% for i in page_obj.paginator.page_range %}
 		    {% if page_obj.number == i %}
 		        <li><span class="page-number">{{ i }}</span></span></li>
 		    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
-		        <li><a href="?page={{ i }}">{{ i }}</a></li>
+		        <li><a href="?{% param_replace page=i %}">{{ i }}</a></li>
 		    {% endif %}
 		{% endfor %}
 		{% if page_obj.has_next %}
-		    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
-		    <li><a href="?page={{ page_obj.paginator.num_pages}}">Fin &raquo;</a></li>
+		    <li><a href="?{% param_replace page=page_obj.next_page_number %}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+		    <li><a href="?{% param_replace page=page_obj.paginator.num_pages %}">Fin &raquo;</a></li>
 		{% endif %}
+	{% endif %}
 		</ul>
 	</div>
 </div>
