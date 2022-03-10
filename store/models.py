@@ -7,7 +7,7 @@ class Category(models.Model):
     image = models.URLField(max_length=255, null=True)
 
     def __str__(self):
-        return self.id
+        return self.name
 
 
 class Product(models.Model):
@@ -15,6 +15,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=120, null=True)
     price = models.CharField(max_length=120, null=True)
     stock = models.IntegerField(default=0)
+    description = models.TextField(null=True)
     image = models.URLField(max_length=255, null=True)
     category = models.ForeignKey(
         Category,
