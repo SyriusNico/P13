@@ -18,3 +18,4 @@ setInterval(function () {
 	hideContent();
 	sliderContent[counter].classList.add('active');
 }, 8000)
+

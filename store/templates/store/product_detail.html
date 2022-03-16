@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-modal">
+	<div class="modal-content">
+		{% if product %}
+		<img src="{{ product.image }}" alt="{{ product.name }}">
+		<h3>{{ product.brand }}</h3>
+		<p>{{ product.name }}</p>
+		<p class="description-text">{{ product.description }}</p>
+		<h3>{{ product.price }}</h3>
+		<h3>Tailles disponibles</h3>
+		<p>{{ product.sizes|cut:"'" }}</p>
+		{% endif %}
+		<div class="close"><a href="{% url 'category' %}">+</a></div>
+		<form action="{% url 'cart' %}" method="GET">
+			<input type="hidden" value="{{ product }}" name="add_to_cart">
+			<button class="description">Ajouter au panier</button>
+		</form>	
+	</div>
+</div>
+{% endblock %}

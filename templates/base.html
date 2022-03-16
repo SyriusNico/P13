@@ -22,11 +22,13 @@
 			<ul>
 				{% if user.is_authenticated %}
 				<li><a href="{% url 'category' %}">Acceuil</a></li>
+				<li><a href=""></a>Ma wishlist</li>
+				<li><a href="">Panier</a></li>
 				{% else %}
 				<li><a href="{% url 'home' %}">Acceuil</a></li>
-				{% endif %}
 				<li><a href="">À propos</a></li>
 				<li><a href="">Contact</a></li>
+				{% endif %}
 			</ul>
 		</nav>
 		{% if user.is_authenticated %}
@@ -107,5 +109,6 @@
 	</footer>
 	{% endblock %}
 	<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/modal.js' %}"></script>
 </body>
 </html>

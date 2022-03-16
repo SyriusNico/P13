@@ -19,18 +19,16 @@
 			</form>
 			{% endfor %}
 		</ul>
-		{% if brands %}
 		<h3>Marques</h3>
 		<ul class="brand-list">
 			{% for brand in brands %}
+			<li>
 			<form action = "{% url 'bybrand' %}" method = "get">
 				<input  class="btn-category" id="side-category" type="submit" value="{{ brand }}" name="brand">
 			</form>
+			</li>
 			{% endfor %}
 		</ul>
-		{% endif %}
-		<ul>text</ul>
-		<ul>text</ul>
 	</div>
 	<div class="card-block">
 		{% for product in product_list %}
@@ -39,8 +37,7 @@
 			<h3>{{ product.price }}</h3>
 			<h3>{{ product.brand }}</h3>
 			<p>{{ product.name }}</p>
-			<br>
-			<form action="" method ="GET">
+			<form action="" method = "">
 				<input id="btn-describe" type="hidden" value="{{ product.id }}" name="description">
 				<button class="description">Description</button>
 			</form>
@@ -67,10 +64,6 @@
 		</ul>
 	</div>
 </div>
-<!-- Modal section -->
-
-{% include 'store/describe.html' %}
-
 {% endblock %}
 
 {% block footer %}

@@ -14,6 +14,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     brand = models.CharField(max_length=120, null=True)
     price = models.CharField(max_length=120, null=True)
+    sizes = models.CharField(max_length=255, null=True)
     stock = models.IntegerField(default=0)
     description = models.TextField(null=True)
     image = models.URLField(max_length=255, null=True)
@@ -30,7 +31,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('products', args=[self.id,])
+        return reverse('product-detail', args=[self.id,])
 
 
 class Order(models.Model):
@@ -50,6 +51,8 @@ class Order(models.Model):
     def __str__(self):
         return f"{self.product.name} ({self.quantity})"
 
+    def get_quantity(self):
+        quantity = sum()
 
 class Cart(models.Model):
     customer = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)

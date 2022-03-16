@@ -37,6 +37,7 @@ class PopulateData():
 			names = soup.find_all("h3", class_="title")
 			brands = soup.find_all("span", class_="brand")
 			prices = soup.find_all("span", class_="current")
+			sizes = self.get_sizes(category)
 			images = soup.find_all("div", class_="image")
 			descriptions = self.get_description(category)
 			list_image = [image.img['src'] for image in images]
@@ -52,6 +53,7 @@ class PopulateData():
 						name = names[product].string,
 						brand = brands[product].string,
 						price = prices[product].string,
+						sizes = sizes[product+1],
 						stock = random.randrange(25, 200),
 						description = descriptions[product+1],
 						image = list_image[product+1],
@@ -79,6 +81,28 @@ class PopulateData():
 				description = soup.find("p", class_="description").string
 				descriptions.append(description)
 		return descriptions
+
+	def get_sizes(self, category):
+		option = webdriver.ChromeOptions()
+		option.add_argument("headless")
+		driver = webdriver.Chrome(
+			service=Service(ChromeDriverManager().install()),
+			options=option
+		)
+		driver.get(self.set_url(category))
+		informations = driver.find_elements(By.CLASS_NAME, "info")
+		sizes = []
+		for information in informations:
+			url = information.get_attribute("data-x")
+			if url is None:
+				pass
+			else:
+				response = requests.request("GET", url)
+				soup = BeautifulSoup(response.content, 'html.parser')
+				size = soup.find_all("a", class_="size")
+				size = [one_size.string for one_size in size]
+				sizes.append(size)
+		return sizes
 
 
 class Command(BaseCommand):
