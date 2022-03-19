@@ -3,14 +3,33 @@
 {% block content %}
 <div class="bg-modal">
 	<div class="modal-content">
-		<img class="modal-image" src="">
-		<h3 class="modal-brand"></h3>
-		<p class="modal-name"></p>
-		<p class="modal-description"></p>
-		<h3 class="modal-price"></h3>
-		<h3>Tailles disponibles</h3>
-		<p class="modal-size"></p>
+		<img class="element modal-image" src="">
+		<h2 class="element modal-brand"></h2>
+		<h3 class="element modal-name"></h3>
+		<p class="element modal-description"></p>
+		<h3 class="element modal-price"></h3>
+		<h3 class="element">Tailles disponibles</h3>
+		<select class="element modal-size">
+			<option value="taille">taille</option>
+		</select>
+		<p class="element modal-size"></p>
 		<div class="close">+</div>
+		<form action="" method="POST">
+			{% csrf_token %}
+			<input type="hidden" name="user" value="{{ user.username }}">
+			<input class="product-id" type="hidden" name="product" value="">
+			<label class="element" for="quantity">Quantité</label>
+			<select name="quantity" class="element">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option>plus</option>
+			</select>
+			<button type="button" class="element add-to-cart" data-id="432" data-name="Pastilles" data-price="29,00" data-size="" data-url="">Ajouter au panier</button>
+		</form>
 	</div>
 </div>
 {% endblock %}

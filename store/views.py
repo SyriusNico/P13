@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.generic import( 
@@ -171,24 +171,28 @@ class ProductDetailView(DetailView):
 class AjaxView(TemplateView):
 	template_name = None
 
-	def json_content(self):
+	def product_json(self):
 		products = Product.objects.all()
 		product = products.filter(id=self.request.GET.get('description'))
-		product = list(product.values())		
+		product = list(product.values())
+		product[0]['sizes'] = product[0]['sizes'].split(",")
+		print(product)		
 		return JsonResponse(product, safe=False)
 
-	# def get_context_data(self, **kwargs):
-	# 	context = super().get_context_data(**kwargs)
-	# 	context['product'] = self.json_content()
-		# return context
 	def get(self, *args, **kwargs):
 		# is_ajax = self.request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 		if self.request.method == "GET":
-			return self.json_content()
+			return self.product_json()
 		return JsonResponse({"success":False}, status=400)
 
 class CartView(TemplateView):
-	
-	def add_to_order(self):
-		if self.request.GET.get('add_to_cart'):
-			return print("Ceci est un test")
+	template_name = 'store/cart.html'
+
+	# def post(self, *args, **kwargs):
+	# 	if self.request.method == 'POST':
+	# 		order = {
+	# 			'id_' : self.request.POST.get('product'),
+	# 			'user_' : self.request.POST.get('user'),
+	# 			'quantity' : self.request.POST.get('quantity')
+	# 		}
+	# 		return JsonResponse(order, safe=False)

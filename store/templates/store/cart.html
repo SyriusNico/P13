@@ -3,11 +3,48 @@
 {% load static %}
 
 {% block content %}
-<div class="bg-modal">
-	<div class="modal-content">
-		{% if user.is_authenticated %}
-		
-		{% endif %}
+<div class="cart-body">
+	<div class="cart-header">
+		<h1>Mon panier</h1>
 	</div>
+	<form>
+		<span class="cart-row" method="POST">
+			<input type="checkbox" name="select-line">
+			<span class="cart-image element">
+				<img src="{% static '/img/2.jpeg' %}">
+			</span>
+			<span class="cart-center">
+				<span class="cart-product">
+					<input type="button" name="product-name" value="Nom du produit">
+					<p class="is-available">En stock</p>
+					<span class="cart-qty">
+						<label class="element" for="quantity">Quantité</label>
+						<select name="quantity" class="element">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option>plus</option>
+						</select>
+					</span>
+				</span>
+				<div class="cart-options">
+					<button>Supprimer</button>
+					<a href="">Produits similaires</a>
+				</div>
+			</span>
+			<span class="cart-amount">
+				<p class="cart-price">€€</p>
+			</span>
+		</span>
+		<br>
+		<br>
+		<span class="btn-row">
+			<input class="btn-order" type="submit" name="valid-order" value="Commander">
+			<p class="cart-total">€€</p>
+		</span>
+	</form>
 </div>
 {% endblock %}

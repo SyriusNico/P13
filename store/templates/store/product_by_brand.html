@@ -37,7 +37,7 @@
 			<h3>{{ product.price }}</h3>
 			<h3>{{ product.brand }}</h3>
 			<p>{{ product.name }}</p>
-			<form action="" method = "">
+			<form action="" method = "GET">
 				<input id="btn-describe" type="hidden" value="{{ product.id }}" name="description">
 				<button class="description">Description</button>
 			</form>
@@ -64,6 +64,7 @@
 		</ul>
 	</div>
 </div>
+{% include 'store/describe.html' %}
 {% endblock %}
 
 {% block footer %}

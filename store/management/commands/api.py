@@ -29,7 +29,7 @@ class PopulateData():
 		return self.url
 
 	def get_data(self):
-		last_page_content = 95
+		last_page_content = 99
 		for category in self.categories:
 			url = self.set_url(category)
 			response = requests.request("GET", url)
@@ -46,6 +46,7 @@ class PopulateData():
 				image=list_image[0]
 			)
 			for product in range(len(names)):
+
 				if product > last_page_content:
 					break
 				else:
@@ -53,13 +54,14 @@ class PopulateData():
 						name = names[product].string,
 						brand = brands[product].string,
 						price = prices[product].string,
-						sizes = sizes[product+1],
+						sizes = sizes[product],
 						stock = random.randrange(25, 200),
-						description = descriptions[product+1],
+						description = descriptions[product],
 						image = list_image[product+1],
 						category = categoryData
 					)
 					datas = productData.save()
+
 
 	def get_description(self, category):
 		option = webdriver.ChromeOptions()

@@ -1,7 +1,5 @@
 let sliderContent = document.getElementsByClassName('content');
-
 let counter = 0;
-
 let numberOfSlide = sliderContent.length;
 
 function hideContent() {

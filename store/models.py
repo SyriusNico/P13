@@ -51,8 +51,6 @@ class Order(models.Model):
     def __str__(self):
         return f"{self.product.name} ({self.quantity})"
 
-    def get_quantity(self):
-        quantity = sum()
 
 class Cart(models.Model):
     customer = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)
