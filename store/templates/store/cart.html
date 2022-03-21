@@ -4,47 +4,32 @@
 
 {% block content %}
 <div class="cart-body">
-	<div class="cart-header">
-		<h1>Mon panier</h1>
+	<h2 class="cart-header">MON PANIER</h2>
+	<div class="cart-row">
+		<span class="cart-item cart-header cart-column">ARTICLE</span>
+		<span class="cart-price cart-header cart-column">PRIX</span>
+		<span class="cart-quantity cart-header cart-column">QUANTITE</span>
 	</div>
-	<form>
-		<span class="cart-row" method="POST">
-			<input type="checkbox" name="select-line">
-			<span class="cart-image element">
-				<img src="{% static '/img/2.jpeg' %}">
-			</span>
-			<span class="cart-center">
-				<span class="cart-product">
-					<input type="button" name="product-name" value="Nom du produit">
-					<p class="is-available">En stock</p>
-					<span class="cart-qty">
-						<label class="element" for="quantity">Quantité</label>
-						<select name="quantity" class="element">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option>plus</option>
-						</select>
-					</span>
-				</span>
-				<div class="cart-options">
-					<button>Supprimer</button>
-					<a href="">Produits similaires</a>
-				</div>
-			</span>
-			<span class="cart-amount">
-				<p class="cart-price">€€</p>
-			</span>
-		</span>
-		<br>
-		<br>
-		<span class="btn-row">
-			<input class="btn-order" type="submit" name="valid-order" value="Commander">
-			<p class="cart-total">€€</p>
-		</span>
-	</form>
+	<div class="cart-items">
+<!-- 		<div class="cart-row">
+			<div class="cart-item">
+				<img class="cart-item-image" src="{% static '/img/3.jpeg' %}">
+				<span class="cart-item-name">T-Shirt</span>
+			</div>
+			<span class="cart-price cart-column" style="margin-left: 50px">19.99€</span>
+			<div class="cart-quantity cart-column">
+				<input class="cart-quantity-input" type="number" value="1">
+				<button class="btn-danger" type="button">Supprimer</button>
+			</div>
+		</div> -->
+	</div>
+	<div class="cart-total">
+		<strong class="cart-total-title" style="padding-right: 10px;">Total</strong>
+		<span class="cart-total-price"></span>
+	</div>
+	<div class="cart-order">
+		<button class="btn-order" type="button">Commander</button>
+	</div>
 </div>
+<script type="module" src="{% static 'js/myCart.js' %}"></script>
 {% endblock %}

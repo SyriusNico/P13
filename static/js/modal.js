@@ -1,4 +1,5 @@
-// const descriptions = document.querySelectorAll("#btn-describe");
+import { Cart } from "./cart.js"
+
 const descriptions = document.querySelectorAll(".description");
 let bgModal = document.querySelector('.bg-modal');
 let image = document.querySelector(".modal-image");
@@ -8,20 +9,29 @@ let text = document.querySelector(".modal-description");
 let price = document.querySelector(".modal-price");
 let size = document.querySelector(".modal-size");
 let close = document.querySelector(".close");
-let productId = document.querySelector(".product-id");
 let body = document.body;
+let cart = new Cart()
 
 function getPreviousElement(element,selector) {
-	var sibling = element.previousElementSibling;
+	let sibling = element.previousElementSibling;
 	if (!selector) return sibling;
 };
 
 function addOptions(listOfOptions) {
 	for(let i = 0; i<listOfOptions.length; i++) {
-		console.log(listOfOptions[i]);
-		opt = document.createElement("option");
-		opt.value = opt.text = listOfOptions[i],
+		let opt = document.createElement("option");
+		opt.value = opt.text = listOfOptions[i];
 		size.appendChild(opt); 
+	}
+}
+
+function getSize() {
+	let sizeOptions = document.querySelector("#size").childNodes;
+	for(let sizeOption of sizeOptions) {
+		sizeOption.addEventListener('click', function() {
+			console.log(sizeOption.value)
+			return sizeOption.value
+		})
 	}
 }
 
@@ -35,25 +45,37 @@ function openModal() {
 			let element = getPreviousElement(item);
 			fetch("/store/products/describe?description=" + element.value)
 				.then(res => res.json())
-				.then(data => {
+				.then(data => { 
 					image.alt = data[0].name;
 					image.src = data[0].image;
 					brand.innerHTML = data[0].brand;
 					name.innerHTML = data[0].name;
 					text.innerHTML = data[0].description;
 					price.innerHTML = data[0].price;
-					productId.value = data[0].id;
+					let productId = data[0].id;
+					let oneSize = getSize();
 					addOptions(data[0].sizes);
+					addToCard(productId, name.innerHTML, price.innerHTML, image.src, oneSize);
 				})
 		}) 
 	})
 };
 
-function closeModal() {
-	close.addEventListener('click', function() {
-		bgModal.style.display = 'None';
-		body.style.overflow = 'auto';
+function addToCard(id, name, price, image, size) {
+	let addToCartButton = document.querySelector(".add-to-cart")
+	addToCartButton.addEventListener("click", function() {
+		location.href = location.origin + "/store/cart"
+		cart.add({"id":id,"name":name, "price":price, "image":image, "size":size})
 	})
+}
+
+function closeModal() {
+	if (bgModal.style.display != 'None') {
+		close.addEventListener('click', function() {
+			bgModal.style.display = 'None';
+			body.style.overflow = 'auto';
+		})
+	}
 };
 
 openModal();

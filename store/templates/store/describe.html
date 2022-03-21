@@ -9,27 +9,14 @@
 		<p class="element modal-description"></p>
 		<h3 class="element modal-price"></h3>
 		<h3 class="element">Tailles disponibles</h3>
-		<select class="element modal-size">
-			<option value="taille">taille</option>
+		<select class="element modal-size" id="size">
+			<option value="taille" selected="selected">--</option>
 		</select>
-		<p class="element modal-size"></p>
 		<div class="close">+</div>
-		<form action="" method="POST">
-			{% csrf_token %}
-			<input type="hidden" name="user" value="{{ user.username }}">
-			<input class="product-id" type="hidden" name="product" value="">
-			<label class="element" for="quantity">Quantité</label>
-			<select name="quantity" class="element">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option>plus</option>
-			</select>
-			<button type="button" class="element add-to-cart" data-id="432" data-name="Pastilles" data-price="29,00" data-size="" data-url="">Ajouter au panier</button>
-		</form>
+		<div class="modal-btn">
+			<button type="button" class="element add-to-cart">Ajouter au panier</button>
+		</div>
 	</div>
 </div>
+<script type="module" src="{% static 'js/modal.js' %}"></script>
 {% endblock %}

@@ -175,8 +175,7 @@ class AjaxView(TemplateView):
 		products = Product.objects.all()
 		product = products.filter(id=self.request.GET.get('description'))
 		product = list(product.values())
-		product[0]['sizes'] = product[0]['sizes'].split(",")
-		print(product)		
+		product[0]['sizes'] = product[0]['sizes'].split(",")		
 		return JsonResponse(product, safe=False)
 
 	def get(self, *args, **kwargs):

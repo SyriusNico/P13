@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Markedet</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style-alt.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,7 +22,7 @@
 				{% if user.is_authenticated %}
 				<li><a href="{% url 'category' %}">Acceuil</a></li>
 				<li><a href=""></a>Ma wishlist</li>
-				<li><a href="">Panier</a></li>
+				<li><a href="{% url 'cart' %}">Panier</a></li>
 				{% else %}
 				<li><a href="{% url 'home' %}">Acceuil</a></li>
 				<li><a href="">À propos</a></li>
@@ -54,48 +53,7 @@
 		<img class="banner-picture" src="{% static '/img/shopping-online.jpg' %}">
 	</section>
 	<div class="parallax-two"></div>
-	<section class="slider content active">
-		<div class="slider-text">
-			<div class="text1">
-				<h2>Tu aimes les vestes ?</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-				<a href="#" class="more">En savoir plus</a>
-			</div>
-		</div>
-		<div class="slider-picture">
-			<div class="picture1">
-				<img src="{% static '/img/1.jpeg' %}" alt="image02" />
-			</div>
-		</div>
-	</section>
-	<section class="slider content">
-		<div class="slider-text">
-			<div class="text1">
-				<h2>Une bonne paire de basket</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-				<a href="#" class="more">En savoir plus</a>
-			</div>
-		</div>
-		<div class="slider-picture">
-			<div class="picture1">
-				<img src="{% static '/img/2.jpeg' %}" alt="image02" />
-			</div>
-		</div>
-	</section>
-	<section class="slider content">
-		<div class="slider-text">
-			<div class="text1">
-				<h2>Un bon sac à dos</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-				<a href="#" class="more">En savoir plus</a>
-			</div>
-		</div>
-		<div class="slider-picture">
-			<div class="picture1">
-				<img src="{% static '/img/3.jpeg' %}" alt="image02" />
-			</div>
-		</div>
-	</section>
+	{% include 'store/slider.html' %}
 	<div class="parallax-three"></div>
 	{% endblock%}
 	{% block footer %}
@@ -108,8 +66,7 @@
 		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</footer>
 	{% endblock %}
-	<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/modal.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+	<!-- <script type="text/javascript" src="{% static 'js/cart.js' %}"></script> -->
+	<!-- <script type="text/javascript" src="{% static 'js/myCookies.js' %}"></script> -->
 </body>
 </html>
