@@ -38,7 +38,7 @@ function getSize() {
 // Open a window when you click on the description button
 function openModal() {
 	descriptions.forEach((item) => {
-		item.addEventListener('click', function() {
+		item.addEventListener('click', function(event) {
 			event.preventDefault();
 			bgModal.style.display = 'flex' ;
 			body.style.overflow = 'hidden';
@@ -53,19 +53,29 @@ function openModal() {
 					text.innerHTML = data[0].description;
 					price.innerHTML = data[0].price;
 					let productId = data[0].id;
+					let user = document.querySelector('.user');
+					user = parseInt(user.value)
 					let oneSize = getSize();
 					addOptions(data[0].sizes);
-					addToCard(productId, name.innerHTML, price.innerHTML, image.src, oneSize);
+					addToCard(
+						productId, name.innerHTML, 
+						parseFloat(price.innerHTML), image.src, 
+						oneSize, user
+					);
 				})
 		}) 
 	})
 };
 
-function addToCard(id, name, price, image, size) {
+function addToCard(id, name, price, image, size, user) {
 	let addToCartButton = document.querySelector(".add-to-cart")
 	addToCartButton.addEventListener("click", function() {
 		location.href = location.origin + "/store/cart"
-		cart.add({"id":id,"name":name, "price":price, "image":image, "size":size})
+		cart.add({
+			"id":id,"name":name, 
+			"price":price, "image":image, 
+			"size":size, "user":user
+		})
 	})
 }
 

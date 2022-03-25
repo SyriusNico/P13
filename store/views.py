@@ -96,6 +96,7 @@ class CategoryView(ListView):
 		context.update(kwargs)
 		return super().get_context_data(**context)
 
+
 class ProductByBrandView(ListView):
 	template_name = 'store/product_by_brand.html'
 	model = Product
@@ -150,23 +151,11 @@ class ProductByBrandView(ListView):
 
 class ProductDetailView(DetailView):
 	context_object_name = 'product'
-	# queryset = Product.objects.all()
 
 	def get_object(self):
 		id_ = self.kwargs.get('id')
 		return get_object_or_404(Product, id=id_)
 
-# 	def jsonify_content(self):
-# 		products = Product.objects.all()
-# 		product = products.filter(id=self.request.GET.get('description'))		
-# 		return JsonResponse({'product':list(product.values())})
-
-# 	def get_context_data(self, **kwargs):
-# 		"""Call the base implementation first to get a context"""
-# 		context = super().get_context_data(**kwargs)
-# 		product_json = self.jsonify_content()
-# 		context['json_product'] = product_json
-# 		return context
 
 class AjaxView(TemplateView):
 	template_name = None
@@ -184,14 +173,15 @@ class AjaxView(TemplateView):
 			return self.product_json()
 		return JsonResponse({"success":False}, status=400)
 
+
 class CartView(TemplateView):
 	template_name = 'store/cart.html'
 
-	# def post(self, *args, **kwargs):
-	# 	if self.request.method == 'POST':
-	# 		order = {
-	# 			'id_' : self.request.POST.get('product'),
-	# 			'user_' : self.request.POST.get('user'),
-	# 			'quantity' : self.request.POST.get('quantity')
-	# 		}
-	# 		return JsonResponse(order, safe=False)
+
+class CheckoutView(TemplateView):
+	template_name = 'store/checkout.html'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['object'] = None
+		return context

@@ -5,7 +5,8 @@ from .views import(
 	ProductByBrandView,
 	AjaxView,
 	ProductDetailView,
-	CartView
+	CartView,
+	CheckoutView
 	)
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
 	path('productbybrand/', ProductByBrandView.as_view(), name='bybrand'),
 	path('categories/', CategoryView.as_view(), name='category'),
 	path('cart/', CartView.as_view(), name='cart'),
+	path('checkout/', CheckoutView.as_view(), name='checkout')
 ]

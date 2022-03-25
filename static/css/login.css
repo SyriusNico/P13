@@ -1,0 +1,22 @@
+.login-form {
+	margin: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 19px;
+	text-align: center;
+}
+
+.login-form a {
+	color: #cfae1b;
+}
+
+
+#valid-text {
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 30px;
+	background-color: #cfae1b;
+	padding: 8px 40px;	
+}

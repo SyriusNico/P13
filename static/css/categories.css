@@ -1,0 +1,44 @@
+.collection {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 10px;
+grid-row-gap: 50px;
+margin-bottom: 200px;
+}
+
+.chaussures { grid-area: 1 / 1 / 2 / 2; }
+.vetements { grid-area: 1 / 2 / 2 / 3; }
+.accessoires { grid-area: 2 / 1 / 3 / 2; }
+.maillots { grid-area: 2 / 2 / 3 / 3; }
+
+.collection-nav{
+	display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+}
+
+.category {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-category {
+	border-style: none;
+	font-size: 25px;
+	cursor: pointer;
+	background-color: white;
+}
+
+.title-collection {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 100px;
+}
+
+.title-collection h1 {
+	margin-left: 300px;
+}

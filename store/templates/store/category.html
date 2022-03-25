@@ -5,11 +5,15 @@
 {% block content %}
 <div class="collection">
 	{% for category in categories  %}
-	<form class="category" action = "{% url 'products' %}" method = "get">
-		<input  class="btn-category" type="submit" value="{{ category.name }}" name="category">
-		<br>
-	    <img src="{{ category.image }}" alt="{{ category.name }}">
-	</form>
+	<div class="{{ category.name }} cat">
+		<hr style="width: 30%;">
+		<form class="category" action = "{% url 'products' %}" method = "get">
+			<input  class="btn-category" type="submit" value="{{ category.name }}" name="category">
+			<br>
+	    	<img src="{{ category.image }}" alt="{{ category.name }}">
+		</form>
+		<hr style="width: 30%;">
+	</div>
 	{% endfor %}
 </div>
 {% endblock %}

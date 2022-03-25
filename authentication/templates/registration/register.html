@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <section>
-	<div>
+	<div class="login-form">
 		<form action="{% url 'register' %}" method="post">
 			<center>
 			{% csrf_token %}

@@ -5,33 +5,33 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Markedet</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style-alt.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 	{% block nav %}
 	<header>
 		<div class="logo">
-			<a href="#"><img src="{% static '/img/logo.png' %}"></a>
+			<a href="{% url 'home' %}"><img class="logo-pic" src="{% static '/img/logo2.png' %}"></a>
 		</div>
 		<nav>
 			<ul>
 				{% if user.is_authenticated %}
-				<li><a href="{% url 'category' %}">Acceuil</a></li>
-				<li><a href=""></a>Ma wishlist</li>
+				<li><a href="{% url 'category' %}">Accueil</a></li>
+				<li><a href="">Ma wishlist</a></li>
 				<li><a href="{% url 'cart' %}">Panier</a></li>
 				{% else %}
-				<li><a href="{% url 'home' %}">Acceuil</a></li>
+				<li><a href="{% url 'home' %}">Accueil</a></li>
 				<li><a href="">À propos</a></li>
 				<li><a href="">Contact</a></li>
 				{% endif %}
 			</ul>
 		</nav>
 		{% if user.is_authenticated %}
-		<a class="login-btn" href="{% url 'logout' %}">Se déconnecter</a>
+		<a class="logout-btn" href="{% url 'logout' %}">Se déconnecter</a>
 		{% else %}
 		<a class="login-btn" href="{% url 'login' %}">Se connecter</a>
 		{% endif %}
@@ -41,9 +41,9 @@
 	<div class="parallax-one"></div>
 	<section class="banner">
 		<div class="banner-text">
-			<div class="line"><hr></div>
+			<hr class="line">
 			<h1>Un slogan original</h1>
-			<div class="line"><hr></div>
+			<hr class="line">
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			<div class="btn-group">
 				<a class="login-btn" href="{% url 'register' %}">S'inscrire</a>
@@ -55,18 +55,12 @@
 	<div class="parallax-two"></div>
 	{% include 'store/slider.html' %}
 	<div class="parallax-three"></div>
+	<footer>
+	<p>FOOTER Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+	</footer>
 	{% endblock%}
 	{% block footer %}
-	<footer>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</footer>
 	{% endblock %}
-	<!-- <script type="text/javascript" src="{% static 'js/cart.js' %}"></script> -->
-	<!-- <script type="text/javascript" src="{% static 'js/myCookies.js' %}"></script> -->
+	<script type="text/javascript" src="{% static 'js/session.js' %}"></script>
 </body>
 </html>

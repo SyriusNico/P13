@@ -1,6 +1,7 @@
 {% load static %}
 
 {% block content %}	
+<div class="slider-body">
 	<section class="slider content active">
 		<div class="slider-text">
 			<div class="text1">
@@ -15,7 +16,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="slider content">
+	<section class="slider content" style="position:absolute; left:0;">
 		<div class="slider-text">
 			<div class="text1">
 				<h2>Une bonne paire de basket</h2>
@@ -29,7 +30,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="slider content">
+	<section class="slider content" style="position:absolute; left:0;">
 		<div class="slider-text">
 			<div class="text1">
 				<h2>Un bon sac à dos</h2>
@@ -44,4 +45,5 @@
 		</div>
 	</section>
 	<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
+</div>
 {% endblock %}
