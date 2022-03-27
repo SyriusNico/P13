@@ -49,29 +49,35 @@ class OrderLine(models.Model):
 	ordered = models.BooleanField(default=False)
 
 	def __str__(self):
-		return f"{self.product.name} ({self.quantity})"
+		return f"{self.product.name}"
 
 	def get_total_price(self):
-		return f"{self.product.price} * {self.quantity}"
+		price = self.product.price.replace(" €","")
+		price = price.replace(",",".")
+		price = float(price)
+		return price * int(self.quantity)
 
 
 class Address(models.Model):
+	customer = models.ForeignKey(
+		AUTH_USER_MODEL,
+		on_delete=models.CASCADE,
+		null=True
+	)
 	fullname = models.CharField(max_length=255)
 	address = models.CharField(max_length=255)
 	zip_code = models.CharField(max_length=5)
 	city = models.CharField(max_length=155)
 	state = models.CharField(max_length=155)
 
+	def __str__(self):
+		return f"{self.customer}"
+
 
 class Order(models.Model):
 	customer = models.OneToOneField(
 		AUTH_USER_MODEL, 
 		on_delete=models.CASCADE, 
-		null=True
-	)
-	address = models.OneToOneField(
-		Address,
-		on_delete=models.CASCADE,
 		null=True
 	)
 	orders = models.ManyToManyField(OrderLine)

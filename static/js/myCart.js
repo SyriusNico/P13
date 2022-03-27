@@ -16,15 +16,14 @@ if (cart.cart != []) {
 		let hr = document.createElement('hr')
 		cartRow.classList.add('cart-row')
 		let cartRowContents = `
-			<input type="hidden" name="product-name" value="${element.name}">
-			<input type="hidden" name="quantity" value="${element.quantity}">
+			<input type="hidden" name="product-id" value="${element.id}">
 			<div class="cart-item cart-column">
 				<img class="cart-item-image" src="${element.image}">
 				<span class="cart-item-name">${element.name}</span>
 			</div>
 			<span class="cart-price cart-column" style="margin-left: 50px">${element.price} €</span>
 			<div class="cart-quantity cart-column">
-				<input class="cart-quantity-input" type="number" min="0" value="${element.quantity}">
+				<input class="cart-quantity-input" name="quantity" type="number" min="0" value="${element.quantity}">
 				<button class="btn btn-danger" type="button" value="${element.id}">Supprimer</button>
 			</div>`
 		cartRow.innerHTML = cartRowContents

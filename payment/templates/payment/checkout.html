@@ -73,15 +73,14 @@
       <h4>Panier
         <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
-          <b>4</b>
+          <b>{{ count }}</b>
         </span>
       </h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      {% for line in order %}
+      <p><a href="#">{{ line.product }}</a> <span class="price">{{ line.get_total_price }}</span></p>
+      {% endfor %}
       <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      <p>Total <span class="price" style="color:black"><b>{{ total | floatformat:2}}€</b></span></p>
     </div>
   </div>
 </div>
