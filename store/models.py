@@ -51,6 +51,9 @@ class OrderLine(models.Model):
 	def __str__(self):
 		return f"{self.product.name} ({self.quantity})"
 
+	def get_total_price(self):
+		return f"{self.product.price} * {self.quantity}"
+
 
 class Address(models.Model):
 	fullname = models.CharField(max_length=255)

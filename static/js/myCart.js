@@ -12,24 +12,24 @@ totalPrice.innerHTML = cart.getTotalPrice()
 
 if (cart.cart != []) {
 	for(let element of cart.cart) {
-		if (element.user == user.value) {
-			let cartRow = document.createElement('div')
-			let hr = document.createElement('hr')
-			cartRow.classList.add('cart-row')
-			let cartRowContents = `
-				<div class="cart-item cart-column">
-					<img class="cart-item-image" src="${element.image}">
-					<span class="cart-item-name">${element.name}</span>
-				</div>
-				<span class="cart-price cart-column" style="margin-left: 50px">${element.price} €</span>
-				<div class="cart-quantity cart-column">
-					<input class="cart-quantity-input" type="number" min="0" value="${element.quantity}">
-					<button class="btn btn-danger" type="button" value="${element.id}">Supprimer</button>
-				</div>`
-			cartRow.innerHTML = cartRowContents
-			cartItems.appendChild(cartRow)
-			cartItems.appendChild(hr)
-		}
+		let cartRow = document.createElement('div')
+		let hr = document.createElement('hr')
+		cartRow.classList.add('cart-row')
+		let cartRowContents = `
+			<input type="hidden" name="product-name" value="${element.name}">
+			<input type="hidden" name="quantity" value="${element.quantity}">
+			<div class="cart-item cart-column">
+				<img class="cart-item-image" src="${element.image}">
+				<span class="cart-item-name">${element.name}</span>
+			</div>
+			<span class="cart-price cart-column" style="margin-left: 50px">${element.price} €</span>
+			<div class="cart-quantity cart-column">
+				<input class="cart-quantity-input" type="number" min="0" value="${element.quantity}">
+				<button class="btn btn-danger" type="button" value="${element.id}">Supprimer</button>
+			</div>`
+		cartRow.innerHTML = cartRowContents
+		cartItems.appendChild(cartRow)
+		cartItems.appendChild(hr)
 	}
 } else {
 	let cartRow = document.createElement('div')

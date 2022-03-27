@@ -55,18 +55,6 @@ class Cart {
 		}
 		return total + " €";
 	}
-
-	// getTotalPrice(user) {
-	// 	let total = 0;
-	// 	for (let product of this.cart) {
-	// 		if (product.user == user) {
-	// 			total += product.quantity * parseFloat(product.price);
-	// 		} else {
-	// 			total = 0
-	// 		}
-	// 	}
-	// 	return total + " €";
-	// }
 }
 
 export { Cart };

@@ -4,6 +4,8 @@
 
 {% block content %}
 <div class="cart-body">
+	<form action="{% url 'checkout' %}" method="POST">
+	{% csrf_token %}
 	<input type="hidden" name="user" class="user" value="{{ user.id }}">
 	<h2 class="cart-header">MON PANIER</h2>
 	<div class="cart-row">
@@ -32,8 +34,9 @@
 	<br>
 	<br>
 	<div class="cart-order">
-		<a href="{% url 'checkout' %}"><button class="btn-order" type="button">Commander</button></a> 
+		<input type="submit" name="order" class="btn-order" value="Commander"> 
 	</div>
+	</form>
 </div>
 <script type="module" src="{% static 'js/myCart.js' %}"></script>
 {% endblock %}
