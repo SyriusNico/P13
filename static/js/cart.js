@@ -51,7 +51,7 @@ class Cart {
 	getTotalPrice() {
 		let total = 0;
 		for (let product of this.cart) {
-			total += product.quantity * parseInt(product.price);
+			total += product.quantity * parseFloat(product.price);
 		}
 		return total + " €";
 	}

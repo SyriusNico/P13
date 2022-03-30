@@ -1,6 +1,7 @@
 from django.db import models
 from P13.local_settings import AUTH_USER_MODEL
 
+
 # Create your models here.
 class Category(models.Model):
 	name = models.CharField(max_length=120, null=True)
@@ -11,10 +12,10 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-	name = models.CharField(max_length=255)
+	name = models.TextField()
 	brand = models.CharField(max_length=120, null=True)
 	price = models.CharField(max_length=120, null=True)
-	sizes = models.CharField(max_length=255, null=True)
+	sizes = models.TextField(null=True)
 	stock = models.IntegerField(default=0)
 	description = models.TextField(null=True)
 	image = models.URLField(max_length=255, null=True)
@@ -34,10 +35,34 @@ class Product(models.Model):
 		return reverse('product-detail', args=[self.id,])
 
 
-class OrderLine(models.Model):
+class Order(models.Model):
 	customer = models.ForeignKey(
 		AUTH_USER_MODEL, 
 		on_delete=models.CASCADE, 
+		related_name='order_user',
+		null=True
+	)
+	fullname = models.CharField(max_length=255, null=True)
+	address1 = models.CharField(max_length=150, null=True)
+	address2 = models.CharField(max_length=150, null=True)
+	postcode = models.CharField(max_length=5, null=True)
+	city = models.CharField(max_length=155, null=True)
+	state = models.CharField(max_length=155, null=True)
+	created = models.DateTimeField(auto_now_add=True)
+	updated = models.DateTimeField(auto_now=True)
+	total_paid = models.DecimalField(max_digits=5, decimal_places=2, null=True)
+	order_key = models.CharField(max_length=200)
+	billing_status = models.BooleanField(default=False)
+
+	def __str__(self):
+		return f"{self.id}"
+
+
+class OrderLine(models.Model):
+	order = models.ForeignKey(
+		Order,
+		related_name='line',
+		on_delete=models.CASCADE,
 		null=True
 	)
 	product = models.ForeignKey(
@@ -49,7 +74,7 @@ class OrderLine(models.Model):
 	ordered = models.BooleanField(default=False)
 
 	def __str__(self):
-		return f"{self.product.name}"
+		return f"{self.id}"
 
 	def get_total_price(self):
 		price = self.product.price.replace(" €","")
@@ -57,32 +82,3 @@ class OrderLine(models.Model):
 		price = float(price)
 		return price * int(self.quantity)
 
-
-class Address(models.Model):
-	customer = models.ForeignKey(
-		AUTH_USER_MODEL,
-		on_delete=models.CASCADE,
-		null=True
-	)
-	fullname = models.CharField(max_length=255)
-	address = models.CharField(max_length=255)
-	zip_code = models.CharField(max_length=5)
-	city = models.CharField(max_length=155)
-	state = models.CharField(max_length=155)
-
-	def __str__(self):
-		return f"{self.customer}"
-
-
-class Order(models.Model):
-	customer = models.OneToOneField(
-		AUTH_USER_MODEL, 
-		on_delete=models.CASCADE, 
-		null=True
-	)
-	orders = models.ManyToManyField(OrderLine)
-	ordered = models.BooleanField(default=False)
-	ordered_date = models.DateTimeField(blank=True, null=True)
-
-	def __str__(self):
-		return self.customer.username

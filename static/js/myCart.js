@@ -7,7 +7,6 @@ let total = document.querySelector(".cart-total")
 let order = document.querySelector(".cart-order")
 let user = document.querySelector(".user")
 
-console.log(cart.cart)
 totalPrice.innerHTML = cart.getTotalPrice()
 
 if (cart.cart != []) {
@@ -21,7 +20,7 @@ if (cart.cart != []) {
 				<img class="cart-item-image" src="${element.image}">
 				<span class="cart-item-name">${element.name}</span>
 			</div>
-			<span class="cart-price cart-column" style="margin-left: 50px">${element.price} €</span>
+			<span class="cart-price cart-column" style="margin-left: 50px">${element.price}</span>
 			<div class="cart-quantity cart-column">
 				<input class="cart-quantity-input" name="quantity" type="number" min="0" value="${element.quantity}">
 				<button class="btn btn-danger" type="button" value="${element.id}">Supprimer</button>

@@ -6,12 +6,13 @@
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="">
+      <form id="payment-form"  method="POST">
+        {% csrf_token %}
         <div class="row">
           <div class="col-50">
             <h3>Adresse de paiement</h3>
             <label for="fname"><i class="fa fa-user"></i> Nom complet</label>
-            <input class="txt" type="text" id="fname" name="firstname" placeholder="John M. Doe">
+            <input class="txt" type="text" id="fname" name="fullname" placeholder="John M. Doe">
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
             <input class="txt" type="text" id="email" name="email" placeholder="john@example.com">
             <label for="adr"><i class="fa fa-address-card-o"></i> Adresse</label>
@@ -30,10 +31,13 @@
               </div>
             </div>
           </div>
-
           <div class="col-50">
-            <h3>Paiments</h3>
-            <label for="fname">Cartes acceptées</label>
+            <h3>Paiement</h3>
+            <div id="card-element">
+            </div>
+          </div>
+          
+<!--             <label for="fname">Cartes acceptées</label>
             <div class="icon-container">
               <i class="fa fa-cc-visa" style="font-size: 45px;"></i>
               <i class="fa fa-cc-amex" style="color:blue; font-size: 45px;"></i>
@@ -56,14 +60,17 @@
                 <label for="cvv">CVV</label>
                 <input class="txt" type="text" id="cvv" name="cvv" placeholder="352">
               </div>
-            </div>
-          </div>
+            </div> -->
+    
 
         </div>
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Adresse de livraison identique à celle de facturation
         </label>
-        <input type="submit" value="Payer" class="btn">
+        {% if order %}
+        <input type="hidden" name="order-id" value="{{ order.id }}">
+        {% endif %}
+        <button type="submit" data-secret="{{ client_secret }}" class="btn" id="submit">Payer</button> 
       </form>
     </div>
   </div>
@@ -76,12 +83,17 @@
           <b>{{ count }}</b>
         </span>
       </h4>
-      {% for line in order %}
-      <p><a href="#">{{ line.product }}</a> <span class="price">{{ line.get_total_price }}</span></p>
+      {% for line in orderline %}
+      <p><a href="#">{{ line.product }} ({{ line.quantity }})</a> <span class="price">{{ line.get_total_price | floatformat:2 }} €</span></p>
       {% endfor %}
       <hr>
-      <p>Total <span class="price" style="color:black"><b>{{ total | floatformat:2}}€</b></span></p>
+      <p>Total <span class="price" style="color:black"><b>{{ total | floatformat:2}} €</b></span></p>
     </div>
   </div>
 </div>
+<script>
+    var CSRF_TOKEN = '{{ csrf_token }}';
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script type="module" src="{% static 'js/payment.js' %}"></script>
 {% endblock %}

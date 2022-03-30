@@ -29,7 +29,6 @@ class PopulateData():
 		return self.url
 
 	def get_data(self):
-		last_page_content = 99
 		for category in self.categories:
 			url = self.set_url(category)
 			response = requests.request("GET", url)
@@ -45,11 +44,10 @@ class PopulateData():
 				name=category, 
 				image=list_image[0]
 			)
+
 			for product in range(len(names)):
 
-				if product > last_page_content:
-					break
-				else:
+				try:
 					productData = Product(
 						name = names[product].string,
 						brand = brands[product].string,
@@ -61,6 +59,8 @@ class PopulateData():
 						category = categoryData
 					)
 					datas = productData.save()
+				except IndexError:
+					pass
 
 
 	def get_description(self, category):

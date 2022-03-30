@@ -1,0 +1,5 @@
+Redirect the customer to your success page.
+succeeded = 4242424242424242 
+
+Ask the customer to enter their card again, or try a new credit card number.
+incorrect_number = 4000000000009995

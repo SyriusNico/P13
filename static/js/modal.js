@@ -52,14 +52,15 @@ function openModal() {
 					name.innerHTML = data[0].name;
 					text.innerHTML = data[0].description;
 					price.innerHTML = data[0].price;
+					console.log(data[0].price);
 					let productId = data[0].id;
 					let user = document.querySelector('.user');
 					user = parseInt(user.value)
 					let oneSize = getSize();
-					addOptions(data[0].sizes);
+					addOptions(data[0].sizes);;
 					addToCard(
 						productId, name.innerHTML, 
-						parseFloat(price.innerHTML), image.src, 
+						data[0].price, image.src, 
 						oneSize, user
 					);
 				})
