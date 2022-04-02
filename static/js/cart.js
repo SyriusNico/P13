@@ -51,9 +51,12 @@ class Cart {
 	getTotalPrice() {
 		let total = 0;
 		for (let product of this.cart) {
+			product.price = product.price.replace(",",".")
+			product.price = parseFloat(product.price.replace(",",".")).toFixed(2)
 			total += product.quantity * parseFloat(product.price);
+			console.log(total)
 		}
-		return total + " €";
+		return total.toFixed(2) + " €";
 	}
 }
 

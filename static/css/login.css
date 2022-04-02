@@ -20,3 +20,22 @@
 	background-color: #cfae1b;
 	padding: 8px 40px;	
 }
+
+.login-btn {
+	font-size: 19px;
+	font-weight: 700;
+	cursor: pointer;
+	border-radius: 30px;
+	background-color: #cfae1b;
+	padding: 8px 40px;
+}
+
+.logout-btn {
+	font-size: 19px;
+	font-weight: 700;
+	cursor: pointer;
+	border-radius: 30px;
+	background-color: #cfae1b;
+	padding: 8px 40px;	
+}
+

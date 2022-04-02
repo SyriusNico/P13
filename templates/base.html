@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Markedet</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	<link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap" rel="stylesheet">
@@ -15,52 +15,57 @@
 	{% block nav %}
 	<header>
 		<div class="logo">
-			<a href="{% url 'home' %}"><img class="logo-pic" src="{% static '/img/logo2.png' %}"></a>
+			<a href="{% url 'category' %}"><img class="logo-pic" src="{% static '/img/logo2.png' %}"></a>
 		</div>
 		<nav>
-			<ul>
+			<ul class="nav-content">
 				{% if user.is_authenticated %}
-				<li><a href="{% url 'category' %}">Accueil</a></li>
-				<li><a href="">Ma wishlist</a></li>
-				<li><a href="{% url 'cart' %}">Panier</a></li>
+				<li>
+					<a href="{% url 'dashboard' %}">
+					<div class="li-account">
+						<i class="fa-solid fa-user"></i>
+						<div class="account">
+							<p id="user-account">Bonjour {{ user | title }}</p> 
+							<span id="account-list">Compte & Listes</span> 
+						</div>
+					</div>
+					</a>
+				</li>
+				<li><a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i> Panier</a><p id="cart-count"></p></li>
 				{% else %}
-				<li><a href="{% url 'home' %}">Accueil</a></li>
-				<li><a href="">À propos</a></li>
-				<li><a href="">Contact</a></li>
+				<li><a href="{% url 'home' %}"> Accueil</a></li>
+				<li><a href=""><i class="fa-solid fa-circle-info"></i> À propos</a></li>
+				<li><a href=""><i class="fa-solid fa-envelopes-bulk"></i> Contact</a></li>
 				{% endif %}
 			</ul>
 		</nav>
 		{% if user.is_authenticated %}
-		<a class="logout-btn" href="{% url 'logout' %}">Se déconnecter</a>
+		<a class="logout-btn" href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter</a>
 		{% else %}
-		<a class="login-btn" href="{% url 'login' %}">Se connecter</a>
+		<a class="login-btn" href="{% url 'login' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</a>
 		{% endif %}
 	</header>
 	{% endblock %}
 	{% block content %}
-	<div class="parallax-one"></div>
-	<section class="banner">
-		<div class="banner-text">
-			<hr class="line">
-			<h1>Un slogan original</h1>
-			<hr class="line">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<div class="btn-group">
-				<a class="login-btn" href="{% url 'register' %}">S'inscrire</a>
-				<a class="login-btn" href="{% url 'login' %}">Se connecter</a>
-			</div>
-		</div>
-		<img class="banner-picture" src="{% static '/img/shopping-online.jpg' %}">
-	</section>
-	<div class="parallax-two"></div>
 	{% include 'store/slider.html' %}
-	<div class="parallax-three"></div>
+	<ul class="categories">
+		{% for category in categories  %}
+		<li>
+			<form class="category" action = "{% url 'products' %}" method = "get">
+			<input  class="btn-category" type="submit" value="{{ category.name }}" name="category">
+			<br>
+	    	<img src="{{ category.image }}" alt="{{ category.name }}">
+			</form>	
+		</li>
+		{% endfor %}
+	</ul>
 	<footer>
-	<p>FOOTER Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+
 	</footer>
 	{% endblock%}
 	{% block footer %}
 	{% endblock %}
 	<script type="text/javascript" src="{% static 'js/session.js' %}"></script>
+	<script type="module" src="{% static 'js/cartCount.js' %}"></script>
 </body>
 </html>

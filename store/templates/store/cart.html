@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="cart-body">
-	<form action="{% url 'checkout' %}" method="POST">
+	<form id="cart-form" action="{% url 'checkout' %}" method="POST">
 	{% csrf_token %}
 	<input type="hidden" name="user" class="user" value="{{ user.id }}">
 	<h2 class="cart-header">MON PANIER</h2>
@@ -15,17 +15,7 @@
 	</div>
 	<hr>
 	<div class="cart-items">
-<!-- 		<div class="cart-row">
-			<div class="cart-item">
-				<img class="cart-item-image" src="{% static '/img/3.jpeg' %}">
-				<span class="cart-item-name">T-Shirt</span>
-			</div>
-			<span class="cart-price cart-column" style="margin-left: 50px">19.99€</span>
-			<div class="cart-quantity cart-column">
-				<input class="cart-quantity-input" type="number" value="1">
-				<button class="btn-danger" type="button">Supprimer</button>
-			</div>
-		</div> -->
+	<!-- item-line will create here -->
 	</div>
 	<div class="cart-total">
 		<strong class="cart-total-title" style="padding-right: 10px;">Total</strong>

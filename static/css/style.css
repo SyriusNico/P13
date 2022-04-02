@@ -29,13 +29,47 @@ nav{
 	width: 50%;
 }
 
-ul{
+.nav-content {
 	display: flex;
 	justify-content: space-evenly;
 	list-style: none;
 	font-size: 19px;
-	font-weight: 700;
+	font-weight: 600;
 	line-height: 80px;
+}
+
+.li-account {
+	display: inline-flex;
+	align-items: center;
+	height: 20px;
+}
+
+#user-account {
+	font-size: 16px;
+	font-weight: 300;
+	height: 20px;
+}
+
+#account-list {
+	height: 160px;
+}
+
+#cart-count {
+    position: relative;
+    height: 0px;
+    left: 85px;
+    top: -80px;
+    font-size: 16px;
+    color: #ff0101;
+}
+
+.account {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: start;
+    margin-top: 63px;
+	margin-left: 15px;
 }
 
 header{
@@ -44,12 +78,6 @@ header{
 	align-items: center;
 	margin-left: -3rem;
 	margin-bottom: 5rem;
-}
-
-nav ul li{
-	display: inline-block;
-	justify-content: space-evenly;
-
 }
 
 footer{
@@ -61,3 +89,9 @@ footer{
 	width: 50%;
 }
 
+.categories {
+	margin-top: 200px;
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+}

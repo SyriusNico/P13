@@ -57,6 +57,8 @@ class Order(models.Model):
 	def __str__(self):
 		return f"{self.id}"
 
+	def get_total_line(self):
+		return self.line.count()
 
 class OrderLine(models.Model):
 	order = models.ForeignKey(

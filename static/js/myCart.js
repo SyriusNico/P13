@@ -9,35 +9,39 @@ let user = document.querySelector(".user")
 
 totalPrice.innerHTML = cart.getTotalPrice()
 
-if (cart.cart != []) {
-	for(let element of cart.cart) {
-		let cartRow = document.createElement('div')
-		let hr = document.createElement('hr')
-		cartRow.classList.add('cart-row')
-		let cartRowContents = `
-			<input type="hidden" name="product-id" value="${element.id}">
-			<div class="cart-item cart-column">
-				<img class="cart-item-image" src="${element.image}">
-				<span class="cart-item-name">${element.name}</span>
-			</div>
-			<span class="cart-price cart-column" style="margin-left: 50px">${element.price}</span>
-			<div class="cart-quantity cart-column">
-				<input class="cart-quantity-input" name="quantity" type="number" min="0" value="${element.quantity}">
-				<button class="btn btn-danger" type="button" value="${element.id}">Supprimer</button>
-			</div>`
-		cartRow.innerHTML = cartRowContents
-		cartItems.appendChild(cartRow)
-		cartItems.appendChild(hr)
-	}
-} else {
+
+for(let element of cart.cart) {
 	let cartRow = document.createElement('div')
+	let hr = document.createElement('hr')
 	cartRow.classList.add('cart-row')
-	let cartRowContents = `Votre panier est vide.`
-	let cartOder = document.querySelector('cart-order')
-	cartOder.remove()
+	let cartRowContents = `
+		<input type="hidden" name="product-id" value="${element.id}">
+		<div class="cart-item cart-column">
+			<img class="cart-item-image" src="${element.image}">
+			<span class="cart-item-name">${element.name}</span>
+		</div>
+		<span class="cart-price cart-column" style="margin-left: 50px">${element.price} €</span>
+		<div class="cart-quantity cart-column">
+			<input class="cart-quantity-input" name="quantity" type="number" min="0" value="${element.quantity}">
+			<button class="btn btn-danger" type="button" value="${element.id}">Supprimer</button>
+		</div>`
 	cartRow.innerHTML = cartRowContents
 	cartItems.appendChild(cartRow)
+	cartItems.appendChild(hr)
 }
+
+
+// if (cart.cartLine == null) {
+// 	let cartForm = document.getElementById('cart-form')
+// 	cartForm.style.display = 'none'
+// 	let cartRow = document.createElement('div')
+// 	cartRow.classList.add('cart-row')
+// 	let message = `
+// 		<div class="empty-basket"></div>
+// 		<br>
+// 		<h1 class="msg">Votre panier est vide</h1>`
+// 	document.querySelector('.cart-body').innerHTML = message
+// }
 
 
 

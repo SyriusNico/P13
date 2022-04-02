@@ -67,7 +67,7 @@ class ProductView(ListView):
 
 
 class CategoryView(ListView):
-	template_name = 'store/category.html'
+	template_name = 'base.html'
 	model = Category
 
 	def get_context_data(self, *, categories=None, **kwargs):

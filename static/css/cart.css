@@ -4,6 +4,16 @@
 	flex-direction: column;
 }
 
+.empty-basket {
+	margin: auto;
+	width: 80%;
+	height: 500px;
+	background: center no-repeat url("../img/empty.jpeg");
+}
+
+.msg {
+	text-align: center;
+}
 
 .cart-header {
 	text-align: center;
