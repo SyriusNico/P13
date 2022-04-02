@@ -15,12 +15,12 @@
 	{% block nav %}
 	<header>
 		<div class="logo">
-			<a href="{% url 'category' %}"><img class="logo-pic" src="{% static '/img/logo2.png' %}"></a>
+			<a href="{% url 'category' %}"><img class="logo-pic" src="{% static '/img/logo3.png' %}"></a>
 		</div>
 		<nav>
 			<ul class="nav-content">
 				{% if user.is_authenticated %}
-				<li>
+				<li class="nav-option">
 					<a href="{% url 'dashboard' %}">
 					<div class="li-account">
 						<i class="fa-solid fa-user"></i>
@@ -31,30 +31,50 @@
 					</div>
 					</a>
 				</li>
-				<li><a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i> Panier</a><p id="cart-count"></p></li>
+				<li class="nav-option"><a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i> Panier</a><p id="cart-count"></p></li>
 				{% else %}
-				<li><a href="{% url 'home' %}"> Accueil</a></li>
-				<li><a href=""><i class="fa-solid fa-circle-info"></i> À propos</a></li>
-				<li><a href=""><i class="fa-solid fa-envelopes-bulk"></i> Contact</a></li>
+				<li class="nav-option"><a href="{% url 'category' %}"><i class="fa-regular fa-shop"></i> Boutique</a></li>
+				<li class="nav-option"><a href=""><i class="fa-solid fa-circle-info"></i> À propos</a></li>
+				<li class="nav-option"><a href=""><i class="fa-solid fa-envelopes-bulk"></i> Contact</a></li>
 				{% endif %}
 			</ul>
 		</nav>
 		{% if user.is_authenticated %}
-		<a class="logout-btn" href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter</a>
+		<a class="logout-btn" href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
 		{% else %}
-		<a class="login-btn" href="{% url 'login' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</a>
+		<a class="login-btn" href="{% url 'login' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
 		{% endif %}
 	</header>
 	{% endblock %}
 	{% block content %}
-	{% include 'store/slider.html' %}
+	<div class="carousel">
+		<div class="carousel-track-container">
+			<ul class="carousel-track">
+				<li class="carousel-slide active">
+					<img class="carousel-image" src="{% static '/img/1.png' %}">
+				</li>
+				<li class="carousel-slide">
+					<img class="carousel-image" src="{% static '/img/2.png' %}">
+				</li>
+				<li class="carousel-slide">
+					<img class="carousel-image" src="{% static '/img/3.png' %}">
+				</li>
+				<li class="carousel-slide">
+					<img class="carousel-image" src="{% static '/img/4.png' %}">
+				</li>
+				<li class="carousel-slide">
+					<img class="carousel-image" src="{% static '/img/5.png' %}">
+				</li>
+			</ul>
+		</div>
+	</div>	
 	<ul class="categories">
 		{% for category in categories  %}
-		<li>
-			<form class="category" action = "{% url 'products' %}" method = "get">
-			<input  class="btn-category" type="submit" value="{{ category.name }}" name="category">
+		<li class="category">
+			<form class="category-form" action = "{% url 'products' %}" method = "get">
+			<input  class="btn-category-home" type="submit" value="{{ category.name }}" name="category">
 			<br>
-	    	<img src="{{ category.image }}" alt="{{ category.name }}">
+	    	<img class="category-image" src="{{ category.image }}" alt="{{ category.name }}">
 			</form>	
 		</li>
 		{% endfor %}
@@ -62,10 +82,13 @@
 	<footer>
 
 	</footer>
+	<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
 	{% endblock%}
 	{% block footer %}
 	{% endblock %}
 	<script type="text/javascript" src="{% static 'js/session.js' %}"></script>
+	{% if user.is_authenticated %}
 	<script type="module" src="{% static 'js/cartCount.js' %}"></script>
+	{% endif %}
 </body>
 </html>

@@ -7,6 +7,3 @@ class RegisterView(CreateView):
 	form_class = RegisterForm
 	template_name = 'registration/register.html'
 	success_url = reverse_lazy('login')
-
-class DashBoardView(TemplateView):
-	template_name = 'registration/dashboard.html'

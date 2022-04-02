@@ -1,9 +1,10 @@
 /*slider content*/
 .carousel {
-	width: 80%;
+	width: 100%;
 	height: 600px;
 	position: relative;
 	margin: 0 auto;
+	padding: 0 auto;
 }
 
 .carousel-image {
@@ -15,17 +16,28 @@
 .carousel-track-container {
 	height: 100%;
 	position: relative;
+	overflow: hidden;
 }
 
 .carousel-track {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	position: relative;
+	height: 100%;
+	width: 400%;
+	transition: transform 800ms ease-in;
 }
 
 .carousel-slide {
 	top: 0;
 	bottom: 0;
 	position: absolute;
+	margin: 0 auto;
+	opacity: 0;
 }
 
+.active {
+	opacity: 1;
+	margin-left: 300px;
+}

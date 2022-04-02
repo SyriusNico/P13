@@ -1,5 +1,5 @@
 // let sliderContent = document.getElementsByClassName('content');
-// let counter = 0;
+let counter = 0;
 // let numberOfSlide = sliderContent.length;
 
 
@@ -30,3 +30,23 @@ const setSlidePosition = (slide, index) => {
 	slide.style.left = slideWidth * index + 'px';
 };
 slides.forEach((setSlidePosition));
+
+// set up slide loop
+setInterval(slideLoop,4000);
+
+function slideLoop() {
+	const currentSlide = track.querySelector('.active');
+	if (currentSlide.nextElementSibling) {
+		const nextSlide = currentSlide.nextElementSibling;
+		// move
+		const amountToMove = nextSlide.style.left;
+		track.style.transform = 'translateX(-' + amountToMove + ')';
+		currentSlide.classList.remove('active');
+		nextSlide.classList.add('active');
+	} else {
+		track.style.transform = 'translateX(' + 0 + ')';
+		currentSlide.classList.remove('active');
+		track.querySelectorAll('.carousel-slide')[0].classList.add('active');
+	}
+}
+
