@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <h1>Adresse</h1>
+  <p>Renseignez les champs</p>
+  <hr />
+  <div class="form"> 
+	  <div class="fields fields--2">
+	    <label class="field">
+	    	<span class="field__label" for="firstname">Prénom</span>
+	    	<input class="field__input" type="text" id="firstname" value="John" />
+	    </label>
+	    <label class="field">
+	    	<span class="field__label" for="lastname">Nom</span>
+	    	<input class="field__input" type="text" id="lastname" value="Doe" />
+	    </label>
+	  </div>
+	  <label class="field">
+	    	<span class="field__label" for="address">Adresse</span>
+	    	<input class="field__input" type="text" id="address" />
+	  </label>	  
+	  <div class="fields fields--2">
+	  		<label class="field">
+		    	<span class="field__label" for="address">Numéro de téléphone</span>
+		    	<input class="field__input" type="text" id="phone-number" />
+		  	</label>
+		    <label class="field">
+		    	<span class="field__label" for="country">Pays</span>
+	   		    <select class="field__input" id="country">
+		        	<option value=""></option>
+		        	<option value="France">France</option>
+		    	</select>
+		    </label>	  	
+	  </div>
+	  <div class="fields fields--3">
+	    <label class="field">
+	    	<span class="field__label" for="zipcode">Code postal</span>
+	    	<input class="field__input" type="text" id="zipcode" />
+	    </label>
+	    <label class="field">
+	    	<span class="field__label" for="city">Ville</span>
+	    	<input class="field__input" type="text" id="city" />
+	    </label>
+	    <label class="field">
+	    	<span class="field__label" for="state">Département</span>
+	    	<select class="field__input" id="state">
+	    		<option value=""></option>
+	    	</select>
+	    </label>
+	  </div>
+  </div>
+  <hr>
+  <button class="button">Continuer</button>
+</div>
+{% endblock %}

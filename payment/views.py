@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, View
-from store.models import OrderLine, Order, Product
+from store.models import Orderline, Order, Product
 from P13.local_settings import(
 	AUTH_USER_MODEL,
 	STRIPE_PUBLISHABLE_KEY,
@@ -50,23 +50,21 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 			index = 0
 			for id_ in id_products:
 				product = Product.objects.all().get(id=id_)
-				line = OrderLine(
+				line = Orderline(
 					order=order,
 					product=product,
 					quantity=qties[index]
 				)
 				line.save()
 				index += 1
-			basket = OrderLine.objects.filter(order=order.id)
+			basket = Orderline.objects.filter(order=order.id)
 			# get total price
 			total = 0
 			for b in basket:
 				total += b.get_total_price()
-				print("dzdzd",b.get_total_price())
 			order.total_paid = total
-			print(total)
 			order.save()
-			order_count = OrderLine.objects.filter(order=order.id).count()
+			order_count = Orderline.objects.filter(order=order.id).count()
 
 			# context to render
 			context = {}

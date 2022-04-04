@@ -57,13 +57,10 @@ class Order(models.Model):
 	def __str__(self):
 		return f"{self.id}"
 
-	def get_total_line(self):
-		return self.line.count()
 
-class OrderLine(models.Model):
+class Orderline(models.Model):
 	order = models.ForeignKey(
 		Order,
-		related_name='line',
 		on_delete=models.CASCADE,
 		null=True
 	)
@@ -78,9 +75,20 @@ class OrderLine(models.Model):
 	def __str__(self):
 		return f"{self.id}"
 
+
 	def get_total_price(self):
 		price = self.product.price.replace(" €","")
 		price = price.replace(",",".")
 		price = float(price)
 		return price * int(self.quantity)
 
+
+class Favorite(models.Model):
+	customer = models.ForeignKey(
+		AUTH_USER_MODEL,
+		on_delete=models.CASCADE
+	)
+	favorite = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return f"{self.favorite}"

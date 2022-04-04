@@ -1,0 +1,13 @@
+.favorite-body {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.wishlist-product {
+	width: 30%;
+}
+
+.wishlist-picture {
+	width: 70%;
+}

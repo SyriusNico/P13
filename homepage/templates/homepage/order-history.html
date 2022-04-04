@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load index %}
+
+{% block title%}Order History{% endblock%}
+
+{% block content%}
+{% for order in orders%}
+<table class="order-board">
+    <thead>
+        <tr class="order-title">
+            <th class="column-30">Commande effectuée le</th>
+          	<th class="column-25">Totale</th>
+          	<th class="column-30">Livraison à</th>
+          	<th class="column-25">N°Commande</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="order-body">
+            <td class="column-30">{{ order.created }}</td>
+            <td class="column-25">{{ order.get_total_price | floatformat:2}} €</td>
+            <td class="column-30">{{ user | capfirst }}</td>
+            <td class="column-25">11122333</td>
+        </tr>
+        <tr class="order-description">
+        	<td class="column-35"><img class="order-pic" src="{{ order.product.image }}"></td>
+        	<td class="column-65">
+        		<div class="order-text">
+        			<h4 class="column-30">{{ order.product.name }}</h4>
+        			<p class="column-65">{{ order.product.description }}</p> 
+        		</div>
+        	</td>
+        </tr>
+        <tr class="buy-again">
+        	<td class="column-100"><input class="btn-buy-again" type="submit" name="" value="Acheter à nouveau"></td>
+        </tr>   
+    </tbody>
+</table>
+{% endfor %}
+{% endblock%}

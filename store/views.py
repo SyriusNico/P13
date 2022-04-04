@@ -18,10 +18,10 @@ class ProductView(ListView):
 	template_name = 'store/products.html'
 	model = Product
 	paginate_by = 12
-	paginate_orphans = 2
+	paginate_orphans = 3
 
 	def get_category(self):
-		query = self.request.GET.get('category')
+		query = self.request.GET.get('category').lower()
 		return query
 
 	def filter_duplicates(self, filtered_list):

@@ -72,7 +72,7 @@
 		{% for category in categories  %}
 		<li class="category">
 			<form class="category-form" action = "{% url 'products' %}" method = "get">
-			<input  class="btn-category-home" type="submit" value="{{ category.name }}" name="category">
+			<input  class="btn-category-home" type="submit" value="{{ category.name | upper }}" name="category">
 			<br>
 	    	<img class="category-image" src="{{ category.image }}" alt="{{ category.name }}">
 			</form>	

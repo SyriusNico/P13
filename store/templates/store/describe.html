@@ -16,6 +16,11 @@
 		<div class="modal-btn">
 			<input type="hidden" class="user" name="user" value="{{ user.id }}">
 			<button type="button" class="element add-to-cart">Ajouter au panier</button>
+			<form action="{% url 'add' %}" method="POST">
+				{% csrf_token %}
+				<input id="favorite" type="hidden" name="product" value="">
+				<input type="submit" name="favorite-btn" value="Ajouter à ma liste">
+			</form>
 		</div>
 	</div>
 </div>

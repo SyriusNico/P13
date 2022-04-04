@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Wishlist{% endblock %}
+
+{% block content %}
+<div class="favorite-body">
+	{% for favorite in favorites %}
+	<div class="wishlist-container">
+		<div class="wishlist-product">
+			<img class="wishlist-picture" src="{{ favorite.favorite.image }}">
+			<p class="">{{ favorite.favorite.brand }}</p>
+			<p class="">{{ favorite.favorite.name }}</p>
+			<p class="">{{ favorite.favorite.price }}</p>
+		</div>
+	</div>
+	{% endfor %}	
+</div>
+{% endblock %}

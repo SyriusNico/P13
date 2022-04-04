@@ -10,6 +10,7 @@ let price = document.querySelector(".modal-price");
 let size = document.querySelector(".modal-size");
 let close = document.querySelector(".close");
 let body = document.body;
+let addToWishList = document.getElementById('favorite');
 let cart = new Cart()
 
 function getPreviousElement(element,selector) {
@@ -50,6 +51,7 @@ function openModal() {
 					image.src = data[0].image;
 					brand.innerHTML = data[0].brand;
 					name.innerHTML = data[0].name;
+					addToWishList.value = data[0].name;
 					text.innerHTML = data[0].description;
 					price.innerHTML = data[0].price;
 					console.log(data[0].price);
