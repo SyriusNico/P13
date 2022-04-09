@@ -4,9 +4,8 @@
 
 .order-title, .order-body, .order-description, .buy-again {
 	display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    width: 800px;
 }
 
 .order-title {
@@ -19,13 +18,14 @@
 .order-description {
 	border-left: 0.1rem groove;
 	border-right: 0.1rem groove;
+	border-bottom: 0.1rem groove;
 	padding: 15px;
 } 
 
 .buy-again {
 	border-left: 0.1rem groove;
 	border-right: 0.1rem groove;
-	border-bottom: .1rem groove;
+
 	padding-bottom: 10px;	
 }
 
@@ -43,6 +43,8 @@
 
 .order-text {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .column-25 {
@@ -72,4 +74,30 @@
 
 .btn-buy-again {
 	font-size: 16px;
+}
+
+@media (max-width: 900px) {
+	.order-text {
+		overflow: scroll;
+		height: 60px;
+	}
+}
+
+@media (max-width: 500px) {
+	.order-board {
+		width: 360px;
+	}
+
+	tbody {
+		width: 360px;
+	}
+
+	.column-25 {
+		display: none;
+		width: auto;
+	}
+
+	.column-30 {
+		width: auto;
+	}
 }

@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Merci pour votre commande</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <section>
-    <h1>Merci pour votre commande</h1>
-    <p>
-      Pour tout renseignement n'hesitez pas à nous contacter.
-      <a href="mailto:orders@example.com">orders@example.com</a>.
-    </p>
-  </section>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Success{% endblock %}
+{% block content %}
+    <body>
+      <div class="success-card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark">✓</i>
+      </div>
+        <h1 class="success-title">Success</h1> 
+        <p class="success-msg">Félicitations la requête à abouti<br/><a href="">Retour à l'accueil</a></p>
+      </div>
+    </body>
+{% endblock %}

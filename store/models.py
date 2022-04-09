@@ -50,7 +50,7 @@ class Order(models.Model):
 	state = models.CharField(max_length=155, null=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	total_paid = models.DecimalField(max_digits=5, decimal_places=2, null=True)
+	total_paid = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 	order_key = models.CharField(max_length=200)
 	billing_status = models.BooleanField(default=False)
 

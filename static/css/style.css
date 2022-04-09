@@ -9,6 +9,7 @@
 @import url('order-history.css');
 @import url('address.css');
 @import url('wishlist.css');
+@import url('success.css');
 
 *{
 	margin: 0;
@@ -18,8 +19,7 @@
 }
 
 body{
-	margin-left: 5rem;
-	margin-right: 5rem;
+	margin: 7rem;
 	background-color: #f0f0f3ba;
 }
 
@@ -28,60 +28,64 @@ a{
 	text-decoration: none;
 }
 
-nav{
-	width: 50%;
-}
 
 .nav-content {
 	display: flex;
 	justify-content: end;
 	list-style: none;
+	margin-left: 5rem;
 	font-size: 19px;
 	font-weight: 600;
 	line-height: 80px;
 }
 
+.nav-content-resp {
+	display: none;
+	list-style: none;
+}
+
 .nav-option {
-	margin: 10px;
+	display: flex;
+	margin-left: 3rem;
+    justify-content: start;
+    align-items: center;
 }
 
 .li-account {
-	display: inline-flex;
+	display: flex;
+	justify-content: center;
 	align-items: center;
-	height: 20px;
+	line-height: 20px;
+}
+
+.li-cart {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #user-account {
-	font-size: 16px;
+	margin-bottom: 33px;
+	margin-left: 6px;
 	font-weight: 300;
+	color: black;
 	height: 20px;
 }
 
-#account-list {
-	height: 160px;
-}
-
 #cart-count {
-    position: relative;
-    height: 0px;
-    left: 85px;
-    top: -80px;
-    font-size: 16px;
-    color: #ff0101;
+	margin-left: 5px;
+	line-height: 20px;
+	color: black;
 }
 
 .account {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: start;
-    margin-top: 63px;
 	margin-left: 15px;
+	line-height: 20px;
 }
 
 header{
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
 	margin-left: -3rem;
 	margin-bottom: 5rem;
@@ -92,26 +96,12 @@ footer{
 	margin: 5rem;
 }
 
-.logo-pic {
-	width: 50%;
-}
-
 .categories {
 	margin-top: 100px;
 	display: flex;
-	justify-content: space-evenly;
+	flex-wrap: wrap;
+	justify-content: center;
 	list-style: none;
-}
-
-.category-image {
-	width: 100%;
-	border-right: 0.5rem solid;
-	border-left: 0.7rem solid; 
-	color: white;
-}
-
-.category-form {
-	width: 150%;
 }
 
 .category {
@@ -119,14 +109,48 @@ footer{
 }
 
 .btn-category-home {
-    width: 100%;
-    font-family: monospace;
-    font-size: 40px;
+	width: 50%;
+	position: absolute;
+	top: 50%;
+	left: 25%;
+    font-size: 20px;
     font-weight: 900;
-    position: absolute;
-    top: 70%;
-    left: 2%;
     border: thick double #d5ecff;
 	background-color: #00000066;
     color: #d5ecff;
+}
+
+@media (max-width: 600px) {
+
+	body {
+		margin: auto;
+	}
+}
+
+@media screen and (max-width: 900px) {
+
+	header {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    margin: 0 auto;
+	    margin-left: 0;
+	    margin-bottom: 0;
+	}
+
+	.nav-content {
+		display: none;
+	}
+
+	.nav-content-resp {
+		display: inline-block;
+		font-size: 20px;
+	}
+
+	.logo-pic {
+		width: 100%;
+	}
+
+
 }

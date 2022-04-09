@@ -43,3 +43,20 @@
 	font-size: 25px;
 	width: 250px;
 }
+
+@media (max-width: 600px) {
+	.modal-content {
+		height: auto;
+		width: auto;
+	}
+
+	.modal-image {
+		margin: 0 auto;
+		width: 36%;
+	}
+
+	.modal-description {
+		overflow: scroll;
+		height: 85px;
+	}
+}

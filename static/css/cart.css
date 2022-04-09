@@ -21,11 +21,9 @@
 }
 
 .cart-row {
-	display: inline-flex;
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 100%;
-
 }
 
 .cart-item {
@@ -89,14 +87,12 @@
 
 
 .btn-order {
-	font-size: 24px;
 	font-weight: 600;
     cursor: pointer;
     border: none;
     border-radius: 30px;
     background-color: #cfae1b;
     padding: 20px;
-	width: 300px;
 }
 
 hr {
@@ -108,4 +104,25 @@ hr {
 	margin-bottom: 50px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+
+@media (max-width: 1002px) {
+
+	.cart-price {
+		display: none;
+	}
+
+	.cart-quantity {
+		display: none;
+	}
+
+	.cart-item {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.cart-item-name {
+		margin-left: 0;
+	}
 }

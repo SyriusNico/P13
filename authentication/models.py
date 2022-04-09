@@ -41,6 +41,7 @@ class User(AbstractUser, PermissionsMixin):
 	
 	email = models.EmailField(lazy_('adresse mail'), unique=True)
 	username = models.CharField("Nom d'utilisateur",max_length=150, unique=True)
+	fullname = models.CharField("Nom complet",max_length=255, blank=True)
 	country = CountryField()
 	phone_number = models.CharField(max_length=15, blank=True)
 	address1 = models.CharField(max_length=150, blank=True)
@@ -53,10 +54,6 @@ class User(AbstractUser, PermissionsMixin):
 	USERNAME_FIELD = 'username'
 	EMAIL_FIELD = 'email'
 	REQUIRED_FIELDS = ['email']
-
-	class Meta:
-		verbose_name = "Accounts"
-		verbose_name_plural = "Accounts"
 
 	def __str__(self):
 		return self.username

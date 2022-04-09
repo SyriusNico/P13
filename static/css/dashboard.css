@@ -15,24 +15,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    padding: 2px 16px;
-    height: 100px;
-    width: 80%;
+    padding: 16px;
 }
 
 .card-body {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .dashboard-card {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 32%;
-  margin-bottom: 20px;
+  padding: 16px;
+  margin: 16px;
 }
 
 .dashboard-card p {

@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, UpdateView
 from store.models import Order, Orderline, Favorite, Product
+from pprint import pprint as p
+
+import random
+import string
 
 class HomePageView(TemplateView):
 	template_name = 'homepage/home.html'
@@ -19,14 +23,10 @@ class OrderHistoryView(ListView):
 		orders = []
 		for user_order in user_orders:
 			orderline = user_order.orderline_set.all()
-			for line in orderline:
-				print(line)
-				orders.append(line)
-		context['orders'] = orders
+			orders.append(orderline)
+		context['orders'] = user_orders
+		context['articles'] = orders
 		return context
-
-class AddressView(TemplateView):
-	template_name = 'homepage/address.html'
 
 
 class AddFavoriteView(TemplateView):

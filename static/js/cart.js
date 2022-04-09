@@ -54,7 +54,6 @@ class Cart {
 			product.price = product.price.replace(",",".")
 			product.price = parseFloat(product.price.replace(",",".")).toFixed(2)
 			total += product.quantity * parseFloat(product.price);
-			console.log(total)
 		}
 		return total.toFixed(2) + " €";
 	}

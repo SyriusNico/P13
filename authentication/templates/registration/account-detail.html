@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-title">
+	<h1>Connexion & sécurité</h1>
+</div>
+<div style="font-size: 20px;">Modifier le nom, le mot de passe ou autre</div>
+<hr>
+<div class="card-body">
+	<a href="{% url 'username-change' %}" class="dashboard-card">
+		<img src="{% static '/img/username.png' %}">
+	  	<div class="container-card">
+	    	<h4><b>Changer de nom</b></h4>
+	    	<p>Suivre, retourner ou acheter à nouveau</p>
+	  	</div>
+	</a>
+	<a href="{% url 'mail-change' %}" class="dashboard-card">
+		<img src="{% static '/img/email.png' %}">
+	  	<div class="container-card">
+	    	<h4><b>Changer de mail</b></h4>
+	    	<p>Modifier le nom, le mot de passe ou autre</p>
+	  </div>
+	</a>
+	<a href="{% url 'password-change' %}" class="dashboard-card">
+		<img src="{% static '/img/key.png' %}">
+	  	<div class="container-card">
+	    	<h4><b>Changer de mot de passe</b></h4>
+	    	<p>Modifier les adresses de livraison des commandes</p>
+	  	</div>
+	</a>
+</div>
+{% endblock %}

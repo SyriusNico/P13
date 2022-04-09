@@ -39,6 +39,8 @@ margin-bottom: 200px;
 	margin-bottom: 100px;
 }
 
-.title-collection h1 {
-	margin-left: 300px;
+@media (max-width: 650px) {
+	.collection {
+		display: block;
+	}
 }

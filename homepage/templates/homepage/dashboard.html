@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
 <div class="dashboard-title">
@@ -8,28 +10,28 @@
 <hr>
 <div class="card-body">
 	<a href="{% url 'order-history' %}" class="dashboard-card">
-		<i class="fa-solid fa-gift" style="font-size: 28px;"></i>
+		<i class="fa-solid fa-gift" style="font-size: 40px;"></i>
 	  	<div class="container-card">
 	    	<h4><b>Commande</b></h4>
 	    	<p>Suivre, retourner ou acheter à nouveau</p>
 	  	</div>
 	</a>
-	<a href="" class="dashboard-card">
-		<i class="fa-solid fa-shield-keyhole" style="font-size: 28px;"></i>
+	<a href="{% url 'account-detail' %}" class="dashboard-card">
+		<img src="{% static '/img/security.ico' %}">
 	  	<div class="container-card">
 	    	<h4><b>Connexion & sécurité</b></h4>
-	    	<p>Modifier le nom et le mot de passe</p>
+	    	<p>Modifier le nom, le mot de passe ou autre</p>
 	  </div>
 	</a>
 	<a href="{% url 'address' %}" class="dashboard-card">
-		<i class="fa-regular fa-book-blank" style="font-size: 28px;"></i>
+		<img src="{% static '/img/address.ico' %}">
 	  	<div class="container-card">
 	    	<h4><b>Mon adresse</b></h4>
 	    	<p>Modifier les adresses de livraison des commandes</p>
 	  	</div>
 	</a>
 	<a href="{% url 'wishlist' %}" class="dashboard-card">
-		<i class="fa-solid fa-list" style="font-size: 28px;"></i>
+		<i class="fa-solid fa-list" style="font-size: 40px;"></i>
 	  	<div class="container-card">
 	    	<h4><b>Liste de souhait</b></h4>
 	    	<p>Modifier ou valider une liste</p>

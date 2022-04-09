@@ -6,13 +6,13 @@
 {% block content %}
 <div class="title-collection">
 	{% for product in product_category %}
-	<h1>{{ product.category }}</h1>
+	<h1>{{ product.category | capfirst }}</h1>
 	{% endfor %}
 </div>
 <div class="collection-nav">
 	<div class="side-nav">
+		<h3 id="side-cat">Categories</h3>
 		<ul class="category-list">
-			<h3>Categories</h3>
 			{% for category in categories %}
 			<form action = "{% url 'products' %}" method = "get">
 				<input  class="btn-category" id="side-category" type="submit" value="{{ category.name }}" name="category">

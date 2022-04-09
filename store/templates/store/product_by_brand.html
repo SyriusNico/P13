@@ -5,8 +5,8 @@
 
 {% block content %}
 <div class="title-collection">
-	{% for product in product_category %}
-	<h1>{{ product.category }}</h1>
+	{% for product in product_list %}
+	<h1>{{ product.category | capfirst }}</h1>
 	{% endfor %}
 </div>
 <div class="collection">

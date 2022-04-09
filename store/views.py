@@ -17,7 +17,7 @@ import pprint
 class ProductView(ListView):
 	template_name = 'store/products.html'
 	model = Product
-	paginate_by = 12
+	paginate_by = 10
 	paginate_orphans = 3
 
 	def get_category(self):
@@ -164,6 +164,7 @@ class AjaxView(TemplateView):
 		products = Product.objects.all()
 		product = products.filter(id=self.request.GET.get('description'))
 		product = list(product.values())
+		print(product[0]['category_id'])
 		product[0]['sizes'] = product[0]['sizes'].split(",")		
 		return JsonResponse(product, safe=False)
 

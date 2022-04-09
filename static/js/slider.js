@@ -23,6 +23,7 @@ let counter = 0;
 const track = document.querySelector('.carousel-track');
 const slides = Array.from(track.children);
 const slideWidth = slides[0].getBoundingClientRect().width;
+console.log(slideWidth);
 
 
 // arrange the slides next to one another

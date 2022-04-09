@@ -10,6 +10,8 @@ let price = document.querySelector(".modal-price");
 let size = document.querySelector(".modal-size");
 let close = document.querySelector(".close");
 let body = document.body;
+let category = document.querySelector(".title-collection").childNodes;
+category = category[1].innerHTML
 let addToWishList = document.getElementById('favorite');
 let cart = new Cart()
 
@@ -54,7 +56,6 @@ function openModal() {
 					addToWishList.value = data[0].name;
 					text.innerHTML = data[0].description;
 					price.innerHTML = data[0].price;
-					console.log(data[0].price);
 					let productId = data[0].id;
 					let user = document.querySelector('.user');
 					user = parseInt(user.value)
@@ -63,17 +64,17 @@ function openModal() {
 					addToCard(
 						productId, name.innerHTML, 
 						data[0].price, image.src, 
-						oneSize, user
+						oneSize, user, category
 					);
 				})
 		}) 
 	})
 };
 
-function addToCard(id, name, price, image, size, user) {
+function addToCard(id, name, price, image, size, user, category) {
 	let addToCartButton = document.querySelector(".add-to-cart")
 	addToCartButton.addEventListener("click", function() {
-		location.href = location.origin + "/store/cart"
+		location.href = location.origin + "/store/products/?category=" + category
 		cart.add({
 			"id":id,"name":name, 
 			"price":price, "image":image, 
@@ -90,6 +91,8 @@ function closeModal() {
 		})
 	}
 };
+
+
 
 openModal();
 closeModal();

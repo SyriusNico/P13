@@ -23,19 +23,33 @@
 				<li class="nav-option">
 					<a href="{% url 'dashboard' %}">
 					<div class="li-account">
-						<i class="fa-solid fa-user"></i>
-						<div class="account">
-							<p id="user-account">Bonjour {{ user | title }}</p> 
-							<span id="account-list">Compte & Listes</span> 
-						</div>
+							<i class="fa-solid fa-user"></i>
+							<p id="user-account">Bonjour {{ user | title }}<br><strong>Compte & Listes </strong></p> 
 					</div>
 					</a>
 				</li>
-				<li class="nav-option"><a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i> Panier</a><p id="cart-count"></p></li>
+				<li class="nav-option">
+					<a href="{% url 'cart' %}">
+						<div class="li-cart">
+							<i class="fa-solid fa-cart-shopping"></i>
+							<p id="cart-count">Panier</p>
+						</div>
+					</a>
+				</li>
 				{% else %}
 				<li class="nav-option"><a href="{% url 'category' %}"><i class="fa-regular fa-shop"></i> Boutique</a></li>
 				<li class="nav-option"><a href=""><i class="fa-solid fa-circle-info"></i> À propos</a></li>
 				<li class="nav-option"><a href=""><i class="fa-solid fa-envelopes-bulk"></i> Contact</a></li>
+				{% endif %}
+			</ul>
+			<ul class="nav-content-resp">
+				{% if user.is_authenticated %}
+				<li class="nav-option-resp"><a href="{% url 'dashboard' %}"><span style="font-size: 13px">Bonjour {{ user | title }}</span><br><strong>Compte & Listes </strong></a></li>
+				<li class="nav-option-resp"><a href="{% url 'cart' %}"><strong id="cart-count-resp">Panier</strong></a></li>
+				{% else %}
+				<li class="nav-option-resp"><a href="{% url 'category' %}">Boutique</a></li>
+				<li class="nav-option-resp"><a href="">À propos</a></li>
+				<li class="nav-option-resp"><a href="">Contact</a></li>
 				{% endif %}
 			</ul>
 		</nav>
@@ -73,7 +87,6 @@
 		<li class="category">
 			<form class="category-form" action = "{% url 'products' %}" method = "get">
 			<input  class="btn-category-home" type="submit" value="{{ category.name | upper }}" name="category">
-			<br>
 	    	<img class="category-image" src="{{ category.image }}" alt="{{ category.name }}">
 			</form>	
 		</li>

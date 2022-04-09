@@ -10,6 +10,7 @@ from P13.local_settings import(
 
 
 import random
+import string
 import stripe
 
 
@@ -37,6 +38,14 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 		)
 		return intent.client_secret
 
+	def key_generator(self):
+		letters = string.ascii_letters
+		key = ''
+		for i in range(3):
+			key += ''.join(random.choice(letters) for i in range(2))
+			key += str(random.randint(1,10))
+		return key
+
 	def post(self, request):
 		# basket form
 		if self.request.method == 'POST':
@@ -44,7 +53,7 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 			id_products = self.request.POST.getlist('product-id')
 			qties = self.request.POST.getlist('quantity')
 			# create order
-			order = Order(customer=user)
+			order = Order(customer=user, order_key=self.key_generator())
 			order.save()
 			# create order line
 			index = 0
@@ -74,32 +83,6 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 			context['count'] = order_count
 			context['client_secret'] = self.client_secret(order.id)
 			return self.render_to_response(context)
-
-# class CheckoutView(LoginRequiredMixin, TemplateView):
-# 	template_name = 'payment/basket.html'
-
-# 	def get_total(self,order_id):
-# 		order = Order.objects.all().get(id=order_id)
-# 		total = str(order.total_paid)
-# 		total = total.replace(",","")
-# 		total = int(total)
-# 		return total
-
-# 	def client_secret(self, request):
-# 		total = self.get_total(self.request.GET.get('order_id'))
-# 		stripe.api_key = STRIPE_SECRET_KEY
-# 		intent = stripe.PaymentIntent.create(
-# 			customer=self.request.user.id,
-# 			currency="eur",
-# 			amount=total,
-# 			payment_method_types=["card"],
-# 			metadata={
-# 				'order_id':self.request.GET.get('order_id')
-# 			}
-# 		)
-# 		return intent.client_secret
-
-
 			
 class SuccessView(TemplateView):
     template_name = "payment/success.html"

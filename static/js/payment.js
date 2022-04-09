@@ -59,8 +59,8 @@ paymentForm.addEventListener('submit', function() {
 				console.log('ça marche pas')
 			} else {
 				if (result.paymentIntent.status === 'succeeded') {
-					console.log('ça marche')
-					window.location.replace("http://127.0.0.1:8000/payment/success")
+					window.localStorage.clear()
+					window.location.replace("http://127.0.0.1:8000/store/categories/")
 				}
 			}
 		})

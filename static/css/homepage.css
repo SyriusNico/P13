@@ -20,7 +20,6 @@
 }
 
 .carousel-track {
-	margin: 0;
 	padding: 0;
 	list-style: none;
 	position: relative;
@@ -33,11 +32,24 @@
 	top: 0;
 	bottom: 0;
 	position: absolute;
-	margin: 0 auto;
+	margin-left: 4%;
 	opacity: 0;
 }
 
 .active {
 	opacity: 1;
-	margin-left: 300px;
+}
+
+@media screen and (max-width: 1428px) {
+
+}
+
+@media screen and (max-width: 900px) {
+	.carousel {
+		display: None;
+	}
+
+	.carousel-image {
+		display: block;
+	}
 }

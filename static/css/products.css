@@ -1,20 +1,11 @@
-.side-nav {
-	width: 15%;
-	display: flex;
-	flex-direction: column;
-}
-
 .card-block {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	width: 70%;
-
 }
 
 .card {
-	width: 30%;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
@@ -50,7 +41,7 @@
 .side-nav {
 	display: flex;
 	flex-direction: column;
-	margin: 0 30px;
+	margin: 0 auto;
 	justify-content: flex-start;
 	align-items: center;
 }
@@ -102,3 +93,23 @@
 		font-size: 35px;
 		border-radius: 15px;
 }
+
+@media (max-width: 600px) {
+
+	.collection-nav {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	}
+
+	.side-nav ul {
+		display: none;
+	}
+
+	.card-block {
+		margin-top: 60px;
+	}
+}
+
+
