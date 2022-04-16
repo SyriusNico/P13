@@ -31,20 +31,6 @@ for(let element of cart.cart) {
 }
 
 
-// if (cart.cartLine == null) {
-// 	let cartForm = document.getElementById('cart-form')
-// 	cartForm.style.display = 'none'
-// 	let cartRow = document.createElement('div')
-// 	cartRow.classList.add('cart-row')
-// 	let message = `
-// 		<div class="empty-basket"></div>
-// 		<br>
-// 		<h1 class="msg">Votre panier est vide</h1>`
-// 	document.querySelector('.cart-body').innerHTML = message
-// }
-
-
-
 let deleteBtn = document.querySelectorAll(".btn-danger")
 function deleteCartLine() {
 	deleteBtn.forEach((item) => {

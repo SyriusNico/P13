@@ -149,14 +149,6 @@ class ProductByBrandView(ListView):
 		return super().get_context_data(**context)
 
 
-class ProductDetailView(DetailView):
-	context_object_name = 'product'
-
-	def get_object(self):
-		id_ = self.kwargs.get('id')
-		return get_object_or_404(Product, id=id_)
-
-
 class AjaxView(TemplateView):
 	template_name = None
 
@@ -164,12 +156,10 @@ class AjaxView(TemplateView):
 		products = Product.objects.all()
 		product = products.filter(id=self.request.GET.get('description'))
 		product = list(product.values())
-		print(product[0]['category_id'])
 		product[0]['sizes'] = product[0]['sizes'].split(",")		
 		return JsonResponse(product, safe=False)
 
 	def get(self, *args, **kwargs):
-		# is_ajax = self.request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 		if self.request.method == "GET":
 			return self.product_json()
 		return JsonResponse({"success":False}, status=400)
@@ -177,3 +167,9 @@ class AjaxView(TemplateView):
 
 class CartView(TemplateView):
 	template_name = 'store/cart.html'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['count'] = self.request.GET.get('count')
+		print(context['count'])
+		return context

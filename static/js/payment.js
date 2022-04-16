@@ -60,7 +60,7 @@ paymentForm.addEventListener('submit', function() {
 			} else {
 				if (result.paymentIntent.status === 'succeeded') {
 					window.localStorage.clear()
-					window.location.replace("http://127.0.0.1:8000/store/categories/")
+					window.location.replace("http://127.0.0.1:8000/payment/success/")
 				}
 			}
 		})

@@ -33,7 +33,7 @@ class AddFavoriteView(TemplateView):
 	template_name = None
 	model = Favorite
 
-	def post(self,request):
+	def post(self,request, *args, **kwargs):
 		if self.request.method == 'POST':
 			product = Product.objects.filter(
 				name=self.request.POST.get('product')
@@ -48,3 +48,9 @@ class WishListView(ListView):
 	template_name = 'homepage/wishlist.html'
 	model = Favorite
 	context_object_name = 'favorites'
+
+class ContactView(TemplateView):
+	template_name = 'homepage/contact.html'
+
+class AboutView(TemplateView):
+	template_name = 'homepage/about.html'

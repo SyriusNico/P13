@@ -3,12 +3,14 @@
 {% block title%}Success{% endblock %}
 {% block content %}
     <body>
-      <div class="success-card">
+      <center>
+              <div class="success-card">
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
       </div>
         <h1 class="success-title">Success</h1> 
-        <p class="success-msg">Félicitations la requête à abouti<br/><a href="">Retour à l'accueil</a></p>
+        <p class="success-msg">Félicitations la requête à abouti<br/><a href="{% url 'category' %}">Retour à l'accueil</a></p>
       </div>
+      </center>
     </body>
 {% endblock %}

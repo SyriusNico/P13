@@ -31,9 +31,6 @@ class Product(models.Model):
 	def __str__(self):
 		return self.name
 
-	def get_absolute_url(self):
-		return reverse('product-detail', args=[self.id,])
-
 
 class Order(models.Model):
 	customer = models.ForeignKey(

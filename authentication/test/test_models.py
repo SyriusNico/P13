@@ -71,7 +71,3 @@ class UserModelsTest(TestCase):
 	def test_customer_manager_create_user(self):
 		customer = User.objects.create_user('to@gmail.com', 'to', 'to123.')
 		self.assertIsInstance(customer, User)
-
-	# def test_get_absolute_url(self):
-	#     customer = User.objects.get(id=1)
-	#     self.assertEquals(customer.get_absolute_url(), '/catalog/customer/1')

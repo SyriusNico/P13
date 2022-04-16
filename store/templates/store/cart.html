@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+{% if count > '0' %}
 <div class="cart-body">
 	<form id="cart-form" action="{% url 'checkout' %}" method="POST">
 	{% csrf_token %}
@@ -29,4 +30,11 @@
 	</form>
 </div>
 <script type="module" src="{% static 'js/myCart.js' %}"></script>
+{% else %}
+<div class="cart-body">
+	<center>
+		<h1>Votre panier est vide</h1>
+	</center>
+</div>
+{% endif %}
 {% endblock %}

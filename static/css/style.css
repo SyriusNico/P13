@@ -10,6 +10,10 @@
 @import url('address.css');
 @import url('wishlist.css');
 @import url('success.css');
+@import url('footer.css');
+@import url('contact.css');
+@import url('about.css');
+
 
 *{
 	margin: 0;
@@ -18,8 +22,16 @@
 	font-family: 'Nunito', sans-serif;
 }
 
+p {
+	margin-bottom: 0;
+}
+
+strong {
+	font-weight: 800;
+}
+
 body{
-	margin: 7rem;
+	margin:0 7rem;
 	background-color: #f0f0f3ba;
 }
 
@@ -28,6 +40,10 @@ a{
 	text-decoration: none;
 }
 
+a:hover {
+	color: #000;
+	text-decoration: none;	
+}
 
 .nav-content {
 	display: flex;
@@ -73,9 +89,24 @@ a{
 }
 
 #cart-count {
-	margin-left: 5px;
-	line-height: 20px;
-	color: black;
+	margin-top: 4px;
+    border: none;
+    background-color: white;
+    font-weight: 800;
+    margin-left: 5px;
+    font-size: 21px;
+    line-height: 20px;
+    color: black;
+}
+
+#cart-count-resp {
+	margin-top: 4px;
+    border: none;
+    background-color: white;
+    font-weight: 800;
+    font-size: 21px;
+    line-height: 20px;
+    color: black;
 }
 
 .account {
@@ -109,10 +140,10 @@ footer{
 }
 
 .btn-category-home {
-	width: 50%;
 	position: absolute;
 	top: 50%;
 	left: 25%;
+	padding: 5px;
     font-size: 20px;
     font-weight: 900;
     border: thick double #d5ecff;
@@ -151,6 +182,4 @@ footer{
 	.logo-pic {
 		width: 100%;
 	}
-
-
 }

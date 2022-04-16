@@ -5,15 +5,21 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Markedet</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
 	{% block nav %}
-	<header>
+	<header style="display: flex;">
 		<div class="logo">
 			<a href="{% url 'category' %}"><img class="logo-pic" src="{% static '/img/logo3.png' %}"></a>
 		</div>
@@ -29,27 +35,38 @@
 					</a>
 				</li>
 				<li class="nav-option">
-					<a href="{% url 'cart' %}">
-						<div class="li-cart">
-							<i class="fa-solid fa-cart-shopping"></i>
-							<p id="cart-count">Panier</p>
-						</div>
-					</a>
+					<form class="li-cart" id="basket" action="{% url 'cart' %}" method="GET">
+						<i class="fa-solid fa-cart-shopping"></i>
+						<input type="hidden" id="number-product" name="count" value="">
+						<input id="cart-count" type="submit" value="Panier">
+					</form>
 				</li>
 				{% else %}
 				<li class="nav-option"><a href="{% url 'category' %}"><i class="fa-regular fa-shop"></i> Boutique</a></li>
-				<li class="nav-option"><a href=""><i class="fa-solid fa-circle-info"></i> À propos</a></li>
-				<li class="nav-option"><a href=""><i class="fa-solid fa-envelopes-bulk"></i> Contact</a></li>
+				<li class="nav-option"><a href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i> À propos de nous</a></li>
+				<li class="nav-option"><a href="{% url 'contact' %}"><i class="fa-solid fa-envelopes-bulk"></i> Contact</a></li>
 				{% endif %}
 			</ul>
 			<ul class="nav-content-resp">
 				{% if user.is_authenticated %}
-				<li class="nav-option-resp"><a href="{% url 'dashboard' %}"><span style="font-size: 13px">Bonjour {{ user | title }}</span><br><strong>Compte & Listes </strong></a></li>
-				<li class="nav-option-resp"><a href="{% url 'cart' %}"><strong id="cart-count-resp">Panier</strong></a></li>
+				<li class="nav-option-resp">
+					<a href="{% url 'dashboard' %}">
+						<span style="font-size: 13px">Bonjour {{ user | title }}
+						</span>
+						<br>
+						<strong>Compte & Listes </strong>
+					</a>
+				</li>
+				<li class="nav-option-resp">
+					<form action ="{% url 'cart' %}" method="GET">
+						<input type="hidden" id="number-product-resp" name="count" value="">
+						<input id="cart-count-resp" type="submit" value="Panier">
+					</form>
+				</li>
 				{% else %}
 				<li class="nav-option-resp"><a href="{% url 'category' %}">Boutique</a></li>
-				<li class="nav-option-resp"><a href="">À propos</a></li>
-				<li class="nav-option-resp"><a href="">Contact</a></li>
+				<li class="nav-option-resp"><a href="{% url 'about' %}">À propos de nous</a></li>
+				<li class="nav-option-resp"><a href="{% url 'contact' %}">Contact</a></li>
 				{% endif %}
 			</ul>
 		</nav>
@@ -61,44 +78,78 @@
 	</header>
 	{% endblock %}
 	{% block content %}
-	<div class="carousel">
-		<div class="carousel-track-container">
-			<ul class="carousel-track">
-				<li class="carousel-slide active">
-					<img class="carousel-image" src="{% static '/img/1.png' %}">
-				</li>
-				<li class="carousel-slide">
-					<img class="carousel-image" src="{% static '/img/2.png' %}">
-				</li>
-				<li class="carousel-slide">
-					<img class="carousel-image" src="{% static '/img/3.png' %}">
-				</li>
-				<li class="carousel-slide">
-					<img class="carousel-image" src="{% static '/img/4.png' %}">
-				</li>
-				<li class="carousel-slide">
-					<img class="carousel-image" src="{% static '/img/5.png' %}">
-				</li>
-			</ul>
-		</div>
-	</div>	
+	<!-- Slider main container -->
+	<div class="swiper">
+	  <!-- Additional required wrapper -->
+	  <div class="swiper-wrapper">
+	    <!-- Slides -->
+	    <div class="swiper-slide"><img src="{% static 'img/1.png' %}"></div>
+	    <div class="swiper-slide"><img src="{% static 'img/2.png' %}"></div>
+	    <div class="swiper-slide"><img src="{% static 'img/3.png' %}"></div>
+	    <div class="swiper-slide"><img src="{% static 'img/4.png' %}"></div>
+	    <div class="swiper-slide"><img src="{% static 'img/5.png' %}"></div>
+	  </div>
+	</div>
 	<ul class="categories">
 		{% for category in categories  %}
 		<li class="category">
 			<form class="category-form" action = "{% url 'products' %}" method = "get">
-			<input  class="btn-category-home" type="submit" value="{{ category.name | upper }}" name="category">
+			<input  class="btn-category-home"  id="{{ category.name }}" type="submit" value="{{ category.name | upper }}" name="category">
 	    	<img class="category-image" src="{{ category.image }}" alt="{{ category.name }}">
 			</form>	
 		</li>
 		{% endfor %}
 	</ul>
-	<footer>
-
-	</footer>
-	<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
-	{% endblock%}
-	{% block footer %}
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+	<!-- Initiakize Swiper -->
+    <script>
+    	const swiper = new Swiper('.swiper', {
+			 autoplay: {
+			   delay: 3000,
+			 },
+			direction: 'horizontal',
+            slidesPerView: 'auto',
+            loopedSlides: 5,
+            loop: true
+		});
+    </script>
 	{% endblock %}
+	<div class="footer-clean">
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Markedet © 2022</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
 	<script type="text/javascript" src="{% static 'js/session.js' %}"></script>
 	{% if user.is_authenticated %}
 	<script type="module" src="{% static 'js/cartCount.js' %}"></script>
