@@ -47,8 +47,8 @@ Fork this repository.
 ## Where to follow the progress ? 
 
 You can track project progress from scratch.
-	- on [instagram](https://www.instagram.com/nicojimray/?hl=fr)
-	- on [twitter](https://twitter.com/NicolasRaynor)
-	- on [linkedIn](https://www.linkedin.com/in/pierre-nicolas-schleicher/)
+-      [instagram](https://www.instagram.com/nicojimray/?hl=fr)
+-      [twitter](https://twitter.com/NicolasRaynor)
+-      [linkedIn](https://www.linkedin.com/in/pierre-nicolas-schleicher/)
 
 
