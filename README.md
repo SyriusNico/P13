@@ -1,6 +1,6 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
-# Markedet fictional e-commerce site
+# Markedet fictional e-commerce site 
 
 ## Table of Contents 
 
@@ -10,11 +10,15 @@
 
 ## Why carry out this project ? <a name="introduction"></a>
 
+![Markedet, logo](/static/img/logo2.png)
+
 The idea of creating an e-commerce site is not an end in itself, this idea meets several personal expectations that I will reveal to you as I develop. We must first recall the context, the conditions of germination of this project.
 
 In order to sell yourself on the labor market, it seems essential to demonstrate your know-how and what could be more telling than to carry out a project from scratch. The choice to create an e-commerce site is interesting since it allows me to combine my personal needs with those of potential customers. An entrepreneur, a company sells services or products. A site is an essential means of promoting its activity. According to a study by the Médiamétrie site, France has 53.1 million Internet users, which represents 84.7% of French people. In addition, if a physical store only targets nearby customers, the e-commerce site will make it possible to reach the whole globe.
 
 ## The products contained or displayed on the site. <a name="disclaimer"></a>
+
+![Markedet, logo](/static/img/categories/shoes.png)
 
 ### Disclaimer
 
