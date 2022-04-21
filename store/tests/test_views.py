@@ -26,7 +26,6 @@ class StoreTestView(TestCase):
 			)
 		self.category = Category.objects.create(name='chaussures')
 		self.client = Client()
-		self.factory = RequestFactory()
 		
 	def test_products_accessible_by_name(self):
 		response = self.client.get(reverse('products')+'?category=CHAUSSURES' )
