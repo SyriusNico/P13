@@ -18,7 +18,7 @@ In order to sell yourself on the labor market, it seems essential to demonstrate
 
 ## The products contained or displayed on the site. <a name="disclaimer"></a>
 
-![Markedet, logo](/static/img/categories/shoes.png)
+![Product example](/static/img/categories/shoes.jpg)
 
 ### Disclaimer
 
