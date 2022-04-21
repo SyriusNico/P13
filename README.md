@@ -44,6 +44,11 @@ Fork this repository.
 - populate database :
 	- python3 manage.py api ***(the word api is not appropriate but I was not inspired when naming)***
 
+## Where to follow the progress ? 
 
+You can track project progress from scratch.
+	- on [instagram](https://www.instagram.com/nicojimray/?hl=fr)
+	- on [twitter](https://twitter.com/NicolasRaynor)
+	- on [linkedIn](https://www.linkedin.com/in/pierre-nicolas-schleicher/)
 
 
