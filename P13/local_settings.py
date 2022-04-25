@@ -147,6 +147,5 @@ STRIPE_SECRET_KEY = 'sk_test_51KhgjvBjHQ5DRC9EEP0h2kfaQs5NUxuMjMiUeEPBoS1B9GFmCn
 
 import dj_database_url
 
-db_from_env = dj_database_url.config()
 DATABASES = {}
-DATABASES['default'].update(db_from_env)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
