@@ -67,6 +67,15 @@ a:hover {
     align-items: center;
 }
 
+.connect, .disconnect {
+	font-size: 21px;
+    line-height: 20px;
+    color: black;
+    margin-left: -26px;
+    margin-bottom: 50px;
+    display: none;
+}
+
 .li-account {
 	display: flex;
 	justify-content: center;
@@ -194,5 +203,17 @@ footer{
 
 	.logo-pic {
 		width: 100%;
+	}
+
+	.connect, .disconnect {
+		display: block;
+	}
+
+	.disconnect-icon {
+		display: none;
+	}
+
+	.connect-icon {
+		display: none;
 	}
 }
