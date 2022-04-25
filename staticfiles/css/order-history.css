@@ -1,0 +1,103 @@
+.order-board {
+	margin: 0 auto 100px auto;
+}
+
+.order-title, .order-body, .order-description, .buy-again {
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.order-title {
+	background-color: #e0e2e3;
+	border-top: 0.1rem groove;
+	border-left: 0.1rem groove;
+	border-right: 0.1rem groove;	
+}
+
+.order-description {
+	border-left: 0.1rem groove;
+	border-right: 0.1rem groove;
+	border-bottom: 0.1rem groove;
+	padding: 15px;
+} 
+
+.buy-again {
+	border-left: 0.1rem groove;
+	border-right: 0.1rem groove;
+
+	padding-bottom: 10px;	
+}
+
+.order-body {
+	background-color: #e0e2e3;
+	border-left: 0.1rem groove;
+	border-right: 0.1rem groove;
+	border-bottom: 0.1rem groove;
+	padding: auto;
+}
+
+.order-pic {
+	width: 40%;
+}
+
+.order-text {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.column-25 {
+	text-align: center;
+	width: 25%;
+}
+
+.column-30 {
+	text-align: center;
+	width: 30%;
+}
+
+.column-35 {
+	text-align: center;
+	width: 35%;
+}
+
+.column-50 {
+	text-align: center;
+	width: 50%;
+}
+
+.column-65 {
+	text-align: center;
+	width: 65%;
+}
+
+.btn-buy-again {
+	font-size: 16px;
+}
+
+@media (max-width: 900px) {
+	.order-text {
+		overflow: scroll;
+		height: 60px;
+	}
+}
+
+@media (max-width: 500px) {
+	.order-board {
+		width: 360px;
+	}
+
+	tbody {
+		width: 360px;
+	}
+
+	.column-25 {
+		display: none;
+		width: auto;
+	}
+
+	.column-30 {
+		width: auto;
+	}
+}
