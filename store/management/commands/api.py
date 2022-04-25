@@ -83,6 +83,7 @@ class PopulateData():
 				soup = BeautifulSoup(response.content, 'html.parser')
 				description = soup.find("p", class_="description").string
 				descriptions.append(description)
+		driver.close()
 		return descriptions
 
 	def get_sizes(self, category):
@@ -107,6 +108,7 @@ class PopulateData():
 				size = soup.find_all("a", class_="size")
 				size = [one_size.string for one_size in size]
 				sizes.append(size)
+		driver.close()
 		return sizes
 
 
