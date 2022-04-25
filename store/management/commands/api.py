@@ -70,10 +70,10 @@ class PopulateData():
 			executable_path=os.environ.get("CHROMEDRIVER_PATH"), 
 			options=option
 		)
-		driver = webdriver.Chrome(
-			service=Service(ChromeDriverManager().install()),
-			options=option
-		)
+		# driver = webdriver.Chrome(
+		# 	service=Service(ChromeDriverManager().install()),
+		# 	options=option
+		# )
 		driver.get(self.set_url(category))
 		informations = driver.find_elements(By.CLASS_NAME, "info")
 		descriptions = []
