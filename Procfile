@@ -1,1 +1,1 @@
-web: gunicorn P13.wsgi:application
+web: gunicorn P13.wsgi
