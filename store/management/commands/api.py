@@ -3,6 +3,8 @@ from ...models import Category, Product
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -62,18 +64,13 @@ class PopulateData():
 
 	def get_description(self, category):
 		option = webdriver.ChromeOptions()
-		option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 		option.add_argument("headless")
 		option.add_argument("--no-sandbox")
 		option.add_argument("--disable-dev-shm-usage")
 		driver = webdriver.Chrome(
-			executable_path=os.environ.get("CHROMEDRIVER_PATH"), 
+			service=Service(ChromeDriverManager().install()),
 			options=option
 		)
-		# driver = webdriver.Chrome(
-		# 	service=Service(ChromeDriverManager().install()),
-		# 	options=option
-		# )
 		driver.get(self.set_url(category))
 		informations = driver.find_elements(By.CLASS_NAME, "info")
 		descriptions = []
@@ -91,6 +88,8 @@ class PopulateData():
 	def get_sizes(self, category):
 		option = webdriver.ChromeOptions()
 		option.add_argument("headless")
+		option.add_argument("--no-sandbox")
+		option.add_argument("--disable-dev-shm-usage")		
 		driver = webdriver.Chrome(
 			service=Service(ChromeDriverManager().install()),
 			options=option
