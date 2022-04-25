@@ -63,6 +63,7 @@ class PopulateData():
 	def get_description(self, category):
 		option = webdriver.ChromeOptions()
 		option.add_argument("headless")
+		option.add_argument("--no-sandbox")
 		driver = webdriver.Chrome(
 			service=Service(ChromeDriverManager().install()),
 			options=option
