@@ -64,7 +64,6 @@ class PopulateData():
 		option = webdriver.ChromeOptions()
 		option.add_argument("headless")
 		option.add_argument("--no-sandbox")
-		option.add_argument("--disable-dev-shm-usage")
 		option.add_argument("--disable-gpu")
 		driver = webdriver.Chrome(
 			service=Service(ChromeDriverManager().install()),
