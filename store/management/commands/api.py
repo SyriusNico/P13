@@ -62,9 +62,14 @@ class PopulateData():
 
 	def get_description(self, category):
 		option = webdriver.ChromeOptions()
+		option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 		option.add_argument("headless")
 		option.add_argument("--no-sandbox")
-		option.add_argument("--disable-gpu")
+		option.add_argument("--disable-dev-shm-usage")
+		driver = webdriver.Chrome(
+			executable_path=os.environ.get("CHROMEDRIVER_PATH"), 
+			options=option
+		)
 		driver = webdriver.Chrome(
 			service=Service(ChromeDriverManager().install()),
 			options=option
