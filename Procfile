@@ -1,1 +1,1 @@
-web: gunicorn P13.wsgi
+web: gunicorn P13.wsgi --log-file -
