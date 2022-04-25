@@ -34,8 +34,8 @@ class Product(models.Model):
 
 class Order(models.Model):
 	customer = models.ForeignKey(
-		AUTH_USER_MODEL, 
-		on_delete=models.CASCADE, 
+		AUTH_USER_MODEL,
+		on_delete=models.CASCADE,
 		related_name='order_user',
 		null=True
 	)
@@ -62,7 +62,7 @@ class Orderline(models.Model):
 		null=True
 	)
 	product = models.ForeignKey(
-		Product, 
+		Product,
 		on_delete=models.CASCADE,
 		null=True
 	)
@@ -72,10 +72,9 @@ class Orderline(models.Model):
 	def __str__(self):
 		return f"{self.id}"
 
-
 	def get_total_price(self):
-		price = self.product.price.replace(" €","")
-		price = price.replace(",",".")
+		price = self.product.price.replace(" €", "")
+		price = price.replace(",", ".")
 		price = float(price)
 		return price * int(self.quantity)
 

@@ -1,17 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponse
-from django.core import serializers
-from django.core.serializers.json import DjangoJSONEncoder
-from django.views.generic import( 
-	ListView, 
-	DetailView, 
-	TemplateView, 
-	)
-from django.core.paginator import Paginator, EmptyPage
+from django.http import JsonResponse
+from django.views.generic import (
+	ListView,
+	TemplateView,
+)
 from .models import Product, Category
-
-import pprint
 
 
 class ProductView(ListView):
@@ -27,7 +19,7 @@ class ProductView(ListView):
 	def filter_duplicates(self, filtered_list):
 		brands = set([product.brand for product in filtered_list])
 		checklist = brands.add
-		unique_brandlist = set(product.brand for product in filtered_list if product.brand in brands or checklist(x))		
+		unique_brandlist = set(product.brand for product in filtered_list if product.brand in brands or checklist(x))
 		return list(unique_brandlist)
 
 	def get_context_data(self, *, product_list=None, **kwargs):
@@ -47,18 +39,18 @@ class ProductView(ListView):
 				'page_obj': page,
 				'is_paginated': is_paginated,
 				'product_list': queryset,
-				'brands' : brands,
-				'product_category' : product_list[:1],
-				'categories' : categories
+				'brands': brands,
+				'product_category': product_list[:1],
+				'categories': categories
 			}
 		else:
 			context = {
 				'paginator': None,
 				'page_obj': None,
 				'is_paginated': False,
-				'brands' : brands,
+				'brands': brands,
 				'product_list': queryset,
-				'categories' : categories
+				'categories': categories
 			}
 		if context_object_name is not None:
 			context[context_object_name] = queryset
@@ -107,11 +99,13 @@ class ProductByBrandView(ListView):
 		query = self.request.GET.get('brand')
 		return query
 
-	def filter_duplicates(self, filtered_list):
-		brands = set([product.brand for product in filtered_list])
+	def filter_duplicates(self, _list):
+		brands = set([product.brand for product in _list])
 		checklist = brands.add
-		unique_brandlist = set(product.brand for product in filtered_list if product.brand in brands or checklist(x))		
-		return list(unique_brandlist)
+		brandlist = set(
+			product.brand for product in _list if product.brand in brands or checklist(x)
+		)
+		return list(brandlist)
 
 	def get_context_data(self, *, product_list=None, **kwargs):
 		"""Get the context for this view."""
@@ -131,17 +125,17 @@ class ProductByBrandView(ListView):
 				'page_obj': page,
 				'is_paginated': is_paginated,
 				'product_list': queryset,
-				'brands' : brands,
-				'categories' : categories
+				'brands': brands,
+				'categories': categories
 			}
 		else:
 			context = {
 				'paginator': None,
 				'page_obj': None,
 				'is_paginated': False,
-				'brands' : brands,
+				'brands': brands,
 				'product_list': queryset,
-				'categories' : categories
+				'categories': categories
 			}
 		if context_object_name is not None:
 			context[context_object_name] = queryset
@@ -156,13 +150,13 @@ class AjaxView(TemplateView):
 		products = Product.objects.all()
 		product = products.filter(id=self.request.GET.get('description'))
 		product = list(product.values())
-		product[0]['sizes'] = product[0]['sizes'].split(",")		
+		product[0]['sizes'] = product[0]['sizes'].split(",")
 		return JsonResponse(product, safe=False)
 
 	def get(self, *args, **kwargs):
 		if self.request.method == "GET":
 			return self.product_json()
-		return JsonResponse({"success":False}, status=400)
+		return JsonResponse({"success": False}, status=400)
 
 
 class CartView(TemplateView):

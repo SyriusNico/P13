@@ -1,15 +1,14 @@
-from django.views.generic import CreateView,TemplateView, UpdateView
+from django.views.generic import CreateView, TemplateView, UpdateView
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib.auth.forms import UserChangeForm
 from .forms import RegisterForm, EditProfileForm, EditMailForm, EditAddressForm
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
 
 
 class RegisterView(CreateView):
 	form_class = RegisterForm
 	template_name = 'registration/register.html'
 	success_url = reverse_lazy('login')
+
 
 class PasswordsChangeView(PasswordChangeView):
 	template_name = 'registration/change-password.html'
@@ -28,6 +27,7 @@ class UsernameChangeView(UpdateView):
 	def get_object(self):
 		return self.request.user
 
+
 class MailChangeView(UpdateView):
 	form_class = EditMailForm
 	template_name = 'registration/change-mail.html'
@@ -36,10 +36,11 @@ class MailChangeView(UpdateView):
 	def get_object(self):
 		return self.request.user
 
+
 class AddressView(UpdateView):
 	form_class = EditAddressForm
 	template_name = 'registration/address.html'
 	success_url = reverse_lazy('success')
-	
+
 	def get_object(self):
 		return self.request.user

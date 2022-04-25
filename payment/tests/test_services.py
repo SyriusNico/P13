@@ -4,12 +4,13 @@ from django.db.models.query import QuerySet
 from store.models import Product, Order, Orderline
 from ..services import Services
 
+
 class ServicesFunctionTest(TestCase):
 
 	def setUp(self):
-		self.user = User.objects.create(username='toto',password='toto123.')
-		self.product = Product.objects.create(name='chemise',price='15')
-		self.order = Order.objects.create(customer=self.user,total_paid=30)
+		self.user = User.objects.create(username='toto', password='toto123.')
+		self.product = Product.objects.create(name='chemise', price='15')
+		self.order = Order.objects.create(customer=self.user, total_paid=30)
 		self.orderline = Orderline.objects.create(
 			order=self.order,
 			product=self.product,
@@ -37,7 +38,7 @@ class ServicesFunctionTest(TestCase):
 
 	def test_basket_price_is_a_queryset(self):
 		basket = self.services.basket_price(2)
-		self.assertIsInstance(basket[1], QuerySet) 
+		self.assertIsInstance(basket[1], QuerySet)
 
 	def test_create_orderline_function(self):
 		product = Product.objects.create(name='pantalon')

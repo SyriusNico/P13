@@ -1,17 +1,15 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.views.generic import TemplateView, ListView, UpdateView
-from store.models import Order, Orderline, Favorite, Product
-from pprint import pprint as p
+from django.shortcuts import redirect
+from django.views.generic import TemplateView, ListView
+from store.models import Order, Favorite, Product
 
-import random
-import string
 
 class HomePageView(TemplateView):
 	template_name = 'homepage/home.html'
 
+
 class DashBoardView(TemplateView):
 	template_name = 'homepage/dashboard.html'
+
 
 class OrderHistoryView(ListView):
 	template_name = 'homepage/order-history.html'
@@ -33,7 +31,7 @@ class AddFavoriteView(TemplateView):
 	template_name = None
 	model = Favorite
 
-	def post(self,request, *args, **kwargs):
+	def post(self, request, *args, **kwargs):
 		if self.request.method == 'POST':
 			product = Product.objects.filter(
 				name=self.request.POST.get('product')
@@ -42,15 +40,19 @@ class AddFavoriteView(TemplateView):
 				customer=self.request.user,
 				favorite=product
 			)
+			favorite.save()
 		return redirect(request.META['HTTP_REFERER'])
+
 
 class WishListView(ListView):
 	template_name = 'homepage/wishlist.html'
 	model = Favorite
 	context_object_name = 'favorites'
 
+
 class ContactView(TemplateView):
 	template_name = 'homepage/contact.html'
+
 
 class AboutView(TemplateView):
 	template_name = 'homepage/about.html'

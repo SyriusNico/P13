@@ -1,38 +1,38 @@
-from django.test import TestCase, Client, RequestFactory
-from django.http import JsonResponse, HttpResponse
+from django.test import TestCase, Client
+from django.http import JsonResponse
 from django.urls import reverse
 from authentication.models import User
 from store.models import Product, Category
-	
+
 
 class StoreTestView(TestCase):
 
 	def setUp(self):
 		self.user = User.objects.create(
-			email = 'polo@gmail.com',
-			username = 'Paul',
-			fullname = 'Paul Newman',
-			country = 'Fr',
-			phone_number = '0123111222333',
-			address1 = '12 rue Liberté',
-			address2 = 'impasse',
-			postcode = '33150',
-			city = 'Cenon',
-			password= 'toto123.',
-			) 
+			email='polo@gmail.com',
+			username='Paul',
+			fullname='Paul Newman',
+			country='Fr',
+			phone_number='0123111222333',
+			address1='12 rue Liberté',
+			address2='impasse',
+			postcode='33150',
+			city='Cenon',
+			password='toto123.',
+		)
 		self.product = Product.objects.create(
-			name = 'Jean',
-			brand = 'Super'
-			)
+			name='Jean',
+			brand='Super'
+		)
 		self.category = Category.objects.create(name='chaussures')
 		self.client = Client()
-		
+
 	def test_products_accessible_by_name(self):
-		response = self.client.get(reverse('products')+'?category=CHAUSSURES' )
+		response = self.client.get(reverse('products') + '?category=CHAUSSURES')
 		self.assertEqual(response.status_code, 200)
 
 	def test_product_by_brand_accessible_by_name(self):
-		response = self.client.get(reverse('bybrand')+'?brand=Super')
+		response = self.client.get(reverse('bybrand') + '?brand=Super')
 		self.assertEqual(response.status_code, 200)
 
 	def test_categories_accessible_by_name(self):

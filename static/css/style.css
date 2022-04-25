@@ -151,6 +151,19 @@ footer{
     color: #d5ecff;
 }
 
+@media (max-width: 1377px) {
+	.nav-content {
+		flex-direction: column;
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 1009px) {
+	header {
+		flex-direction: column;
+	}
+}
+
 @media (max-width: 600px) {
 
 	body {

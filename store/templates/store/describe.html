@@ -19,7 +19,7 @@
 			<form action="{% url 'add' %}" method="POST">
 				{% csrf_token %}
 				<input id="favorite" type="hidden" name="product" value="">
-				<input type="submit" name="favorite-btn" value="Ajouter à ma liste">
+				<input id="favorite-btn" type="submit" name="favorite-btn" value="Ajouter à ma liste">
 			</form>
 		</div>
 	</div>

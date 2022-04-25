@@ -3,14 +3,12 @@ from ...models import Category, Product
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 import requests
 import random
-import time
-import pprint
+
 
 class PopulateData():
 
@@ -41,7 +39,7 @@ class PopulateData():
 			descriptions = self.get_description(category)
 			list_image = [image.img['src'] for image in images]
 			categoryData = Category.objects.create(
-				name=category, 
+				name=category,
 				image=list_image[0]
 			)
 
@@ -49,19 +47,18 @@ class PopulateData():
 
 				try:
 					productData = Product(
-						name = names[product].string,
-						brand = brands[product].string,
-						price = prices[product].string,
-						sizes = sizes[product],
-						stock = random.randrange(25, 200),
-						description = descriptions[product],
-						image = list_image[product+1],
-						category = categoryData
+						name=names[product].string,
+						brand=brands[product].string,
+						price=prices[product].string,
+						sizes=sizes[product],
+						stock=random.randrange(25, 200),
+						description=descriptions[product],
+						image=list_image[product + 1],
+						category=categoryData
 					)
-					datas = productData.save()
+					productData.save()
 				except IndexError:
 					pass
-
 
 	def get_description(self, category):
 		option = webdriver.ChromeOptions()

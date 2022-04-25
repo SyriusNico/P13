@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import ( 
-	AbstractUser, 
-	UserManager, 
+from django.contrib.auth.models import (
+	AbstractUser,
+	UserManager,
 	PermissionsMixin
 )
 from django_countries.fields import CountryField
@@ -31,23 +31,23 @@ class CustomAccountManager(UserManager):
 			raise ValueError(lazy_('Vous devez fournir une adresse email'))
 
 		email = self.normalize_email(email)
-		user = self.model(username=username,**other_fields)
+		user = self.model(username=username, **other_fields)
 		user.set_password(password)
 		user.save()
 		return user
 
 
 class User(AbstractUser, PermissionsMixin):
-	
+
 	email = models.EmailField(lazy_('adresse mail'), unique=True)
-	username = models.CharField("Nom d'utilisateur",max_length=150, unique=True)
-	fullname = models.CharField("Nom complet",max_length=255, blank=True)
+	username = models.CharField("Nom d'utilisateur", max_length=150, unique=True)
+	fullname = models.CharField("Nom complet", max_length=255, blank=True)
 	country = CountryField()
 	phone_number = models.CharField(max_length=15, blank=True)
 	address1 = models.CharField(max_length=150, blank=True)
 	address2 = models.CharField(max_length=150, blank=True)
 	postcode = models.CharField(max_length=5, blank=True)
-	city = models.CharField(max_length=155, blank=True)	
+	city = models.CharField(max_length=155, blank=True)
 
 	objects = CustomAccountManager()
 

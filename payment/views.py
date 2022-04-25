@@ -1,13 +1,9 @@
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, View
-from store.models import Orderline, Order, Product
-from P13.local_settings import(
-	AUTH_USER_MODEL,
-	STRIPE_PUBLISHABLE_KEY,
-	STRIPE_SECRET_KEY
-)
+from django.views.generic import TemplateView
+from store.models import Orderline, Order
+from P13.local_settings import STRIPE_SECRET_KEY
 from .services import Services
+
 
 import stripe
 
@@ -17,7 +13,7 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 	template_name = 'payment/basket.html'
 	services = Services()
 
-	def client_secret(self,order_id):
+	def client_secret(self, order_id):
 		total = self.services.get_total(order_id)
 		stripe.api_key = STRIPE_SECRET_KEY
 		intent = stripe.PaymentIntent.create(
@@ -25,7 +21,7 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 			amount=total,
 			payment_method_types=["card"],
 			metadata={
-				'order_id':self.request.GET.get('order_id')
+				'order_id': self.request.GET.get('order_id')
 			}
 		)
 		return intent.client_secret
@@ -38,7 +34,7 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 			qties = self.request.POST.getlist('quantity')
 			# create order
 			order = Order(
-				customer=user, 
+				customer=user,
 				order_key=self.services.key_generator()
 			)
 			order.save()
@@ -55,9 +51,11 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
 			context['count'] = order_count
 			context['client_secret'] = self.client_secret(order.id)
 			return self.render_to_response(context)
-			
+
+
 class SuccessView(TemplateView):
-    template_name = "payment/success.html"
+	template_name = "payment/success.html"
+
 
 class CancelView(TemplateView):
-    template_name = "payment/cancel.html"
+	template_name = "payment/cancel.html"

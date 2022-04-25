@@ -25,4 +25,3 @@ class AuthenticationTestView(TestCase):
 	def test_account_detail_view_url(self):
 		response = self.client.get(reverse('account-detail'))
 		self.assertEqual(response.status_code, 200)
-

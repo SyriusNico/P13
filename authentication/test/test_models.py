@@ -6,20 +6,20 @@ class UserModelsTest(TestCase):
 	@classmethod
 	def setUpTestData(cls):
 		User.objects.create(
-			email = 'polo@gmail.com',
-			username = 'Paul',
-			fullname = 'Paul Newman',
-			country = 'Fr',
-			phone_number = '0123111222333',
-			address1 = '12 rue Liberté',
-			address2 = 'impasse',
-			postcode = '33150',
-			city = 'Cenon',
-			password= 'toto123.',
-			) 
+			email='polo@gmail.com',
+			username='Paul',
+			fullname='Paul Newman',
+			country='Fr',
+			phone_number='0123111222333',
+			address1='12 rue Liberté',
+			address2='impasse',
+			postcode='33150',
+			city='Cenon',
+			password='toto123.',
+		)
 
 	def test_user_is_instance(self):
-		customer = User.objects.create(username='toto',password=('tototo12'))
+		customer = User.objects.create(username='toto', password=('tototo12'))
 		self.assertIsInstance(customer, User)
 
 	def test_customer_is_user_instance(self):
@@ -32,7 +32,7 @@ class UserModelsTest(TestCase):
 
 	def test_username_is_true(self):
 		customer = User.objects.get(id=1)
-		self.assertFalse( customer.username == 'Patrick')
+		self.assertFalse(customer.username == 'Patrick')
 
 	def test_username_label(self):
 		customer = User.objects.get(id=1)
@@ -60,11 +60,15 @@ class UserModelsTest(TestCase):
 		self.assertEquals(expected_object_name, str(customer))
 
 	def test_superuser_is_instance(self):
-		customer = User.objects.create_superuser('toto@gmail.com', 'toto', 'toto123.')
+		customer = User.objects.create_superuser(
+			'toto@gmail.com', 'toto', 'toto123.'
+		)
 		self.assertIsInstance(customer, User)
 
 	def test_user_is_superuser(self):
-		customer = User.objects.create_superuser('toto@gmail.com', 'toto', 'toto123.')
+		customer = User.objects.create_superuser(
+			'toto@gmail.com', 'toto', 'toto123.'
+		)
 		field_label = customer._meta.get_field('is_superuser')
 		self.assertTrue(field_label)
 

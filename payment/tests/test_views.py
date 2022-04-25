@@ -2,17 +2,16 @@ from django.test import TestCase, Client, RequestFactory
 from django.urls import reverse
 from authentication.models import User
 from store.models import Product, Order, Orderline
-from ..views import CheckoutView
-from pprint import pprint
+
 
 class PaymentTestView(TestCase):
 
 	def setUp(self):
 		self.client = Client()
 		self.factory = RequestFactory()
-		self.user = User.objects.create(username='toto',password='toto123.')
-		self.product = Product.objects.create(name='chemise',price='15')
-		self.order = Order.objects.create(customer=self.user,total_paid=30)
+		self.user = User.objects.create(username='toto', password='toto123.')
+		self.product = Product.objects.create(name='chemise', price='15')
+		self.order = Order.objects.create(customer=self.user, total_paid=30)
 		self.orderline = Orderline.objects.create(
 			order=self.order,
 			product=self.product,
@@ -22,7 +21,7 @@ class PaymentTestView(TestCase):
 		self.product.save()
 		self.order.save()
 		self.orderline.save()
-		
+
 	def test_basket_accessible_by_name(self):
 		response = self.client.get(reverse('checkout'))
 		self.assertEqual(response.status_code, 302)
@@ -57,4 +56,3 @@ class PaymentTestView(TestCase):
 		response = self.client.post(reverse('checkout'))
 		self.assertEqual(response.status_code, 302)
 		self.assertEqual(Order.objects.all().count(), 1)
-

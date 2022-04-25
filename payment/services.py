@@ -30,12 +30,12 @@ class Services():
 		key = ''
 		for i in range(3):
 			key += ''.join(random.choice(letters) for i in range(2))
-			key += str(random.randint(1,10))
+			key += str(random.randint(1, 10))
 		return key
 
-	def get_total(self,order_id):
+	def get_total(self, order_id):
 		order = Order.objects.all().get(id=order_id)
 		total = str(order.total_paid)
-		total = total.replace(".","")
+		total = total.replace(".", "")
 		total = int(total)
 		return total
