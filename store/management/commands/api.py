@@ -28,39 +28,38 @@ class PopulateData():
 		self.url = f"https://www.fashiola.fr/homme/{url}/"
 		return self.url
 
-	def get_data(self):
-		for category in self.categories:
-			url = self.set_url(category)
-			response = requests.request("GET", url)
-			soup = BeautifulSoup(response.content, 'html.parser')
-			names = soup.find_all("h3", class_="title")
-			brands = soup.find_all("span", class_="brand")
-			prices = soup.find_all("span", class_="current")
-			sizes = self.get_sizes(category)
-			images = soup.find_all("div", class_="image")
-			descriptions = self.get_description(category)
-			list_image = [image.img['src'] for image in images]
-			categoryData = Category.objects.create(
-				name=category,
-				image=list_image[0]
-			)
+	def get_data(self, category):
+		url = self.set_url(category)
+		response = requests.request("GET", url)
+		soup = BeautifulSoup(response.content, 'html.parser')
+		names = soup.find_all("h3", class_="title")
+		brands = soup.find_all("span", class_="brand")
+		prices = soup.find_all("span", class_="current")
+		sizes = self.get_sizes(category)
+		images = soup.find_all("div", class_="image")
+		descriptions = self.get_description(category)
+		list_image = [image.img['src'] for image in images]
+		categoryData = Category.objects.create(
+			name=category,
+			image=list_image[0]
+		)
 
-			for product in range(len(names)):
+		for product in range(len(names)):
 
-				try:
-					productData = Product(
-						name=names[product].string,
-						brand=brands[product].string,
-						price=prices[product].string,
-						sizes=sizes[product],
-						stock=random.randrange(25, 200),
-						description=descriptions[product],
-						image=list_image[product + 1],
-						category=categoryData
-					)
-					productData.save()
-				except IndexError:
-					pass
+			try:
+				productData = Product(
+					name=names[product].string,
+					brand=brands[product].string,
+					price=prices[product].string,
+					sizes=sizes[product],
+					stock=random.randrange(25, 200),
+					description=descriptions[product],
+					image=list_image[product + 1],
+					category=categoryData
+				)
+				productData.save()
+			except IndexError:
+				pass
 
 	def get_description(self, category):
 		option = webdriver.ChromeOptions()
@@ -116,4 +115,5 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **options):
 		data = PopulateData()
-		data.get_data()
+		for category in data.categories:
+			data.get_data(category)
