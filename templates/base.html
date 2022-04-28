@@ -42,7 +42,7 @@
 					</form>
 				</li>
 				{% else %}
-				<li class="nav-option"><a href="{% url 'category' %}"><i class="fa-regular fa-shop"></i> Boutique</a></li>
+				<li class="nav-option"><a href="{% url 'category' %}"><img src="{% static 'img/boutique.png' %}"> Boutique</a></li>
 				<li class="nav-option"><a href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i> À propos de nous</a></li>
 				<li class="nav-option"><a href="{% url 'contact' %}"><i class="fa-solid fa-envelopes-bulk"></i> Contact</a></li>
 				{% endif %}
