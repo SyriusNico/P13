@@ -338,7 +338,7 @@ a:hover {
   transform: translateY(10px);
 }
 
-@media (max-width: 600) {
+@media (max-width: 600px) {
   #brand-h3 {
     display: none;
   }
