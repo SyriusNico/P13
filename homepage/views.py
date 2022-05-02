@@ -32,19 +32,17 @@ class AddFavoriteView(TemplateView):
 	model = Favorite
 
 	def post(self, request, *args, **kwargs):
-		if self.request.user:
-			if self.request.method == 'POST':
-				product = Product.objects.filter(
-					name=self.request.POST.get('product')
-				).first()
-				favorite = Favorite.objects.create(
-					customer=self.request.user,
-					favorite=product
-				)
-				favorite.save()
-			return redirect(request.META['HTTP_REFERER'])
-		else:
-			return redirect("Vous devez être connecté")
+		if self.request.method == 'POST':
+			product = Product.objects.filter(
+				name=self.request.POST.get('product')
+			).first()
+			favorite = Favorite.objects.create(
+				customer=self.request.user,
+				favorite=product
+			)
+			favorite.save()
+		return redirect(request.META['HTTP_REFERER'])
+
 
 
 class WishListView(ListView):

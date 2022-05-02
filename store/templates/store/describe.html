@@ -19,7 +19,9 @@
 			<form action="{% url 'add' %}" method="POST">
 				{% csrf_token %}
 				<input id="favorite" type="hidden" name="product" value="">
+				{% if user.is_authenticate %}
 				<input id="favorite-btn" type="submit" name="favorite-btn" value="Ajouter à ma liste">
+				{% endif %}
 			</form>
 		</div>
 	</div>
