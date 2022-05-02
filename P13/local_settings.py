@@ -79,16 +79,16 @@ WSGI_APPLICATION = 'P13.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'P13',
-#         'USER': 'postgres',
-#         'PASSWORD': 'popi',
-#         'HOST': '',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'P13',
+        'USER': 'postgres',
+        'PASSWORD': 'popi',
+        'HOST': '',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
@@ -130,7 +130,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static/']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 # Default primary key field type
@@ -145,7 +145,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51KhgjvBjHQ5DRC9EELeowiZIqc2AnGDR94FgSsxk9u2XUkznvzSXTheQ0z9MYkCVrhF1Vxto79uMTOO53uJC9har00kyHNa1xx'
 STRIPE_SECRET_KEY = 'sk_test_51KhgjvBjHQ5DRC9EEP0h2kfaQs5NUxuMjMiUeEPBoS1B9GFmCno9cxFyd6kepyeuioD1cbBdLWpLZgEZOB3JqDbE00Kerf0aLr'
 
-import dj_database_url
+# import dj_database_url
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)

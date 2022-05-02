@@ -1,0 +1,11 @@
+.favorite-body {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.wishlist-picture {
+	width: 50%;
+	margin-top: 80px;
+}

@@ -17,7 +17,7 @@ form.addEventListener('submit', async (event) => {
     //`Elements` instance that was used to create the Payment Element
     elements,
     confirmParams: {
-      return_url: 'http://127.0.0.1:8000/payment/success/',
+      return_url: 'http://markedet.herokuapp.com/payment/success/',
     },
   });
 

@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, ListView
-from store.models import Order, Favorite, Product
+from store.models import Order, Product
 
 
 class HomePageView(TemplateView):
@@ -25,30 +25,6 @@ class OrderHistoryView(ListView):
 		context['orders'] = user_orders
 		context['articles'] = orders
 		return context
-
-
-class AddFavoriteView(TemplateView):
-	template_name = None
-	model = Favorite
-
-	def post(self, request, *args, **kwargs):
-		if self.request.method == 'POST':
-			product = Product.objects.filter(
-				name=self.request.POST.get('product')
-			).first()
-			favorite = Favorite.objects.create(
-				customer=self.request.user,
-				favorite=product
-			)
-			favorite.save()
-		return redirect(request.META['HTTP_REFERER'])
-
-
-
-class WishListView(ListView):
-	template_name = 'homepage/wishlist.html'
-	model = Favorite
-	context_object_name = 'favorites'
 
 
 class ContactView(TemplateView):

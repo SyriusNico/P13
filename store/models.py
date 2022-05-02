@@ -77,14 +77,3 @@ class Orderline(models.Model):
 		price = price.replace(",", ".")
 		price = float(price)
 		return price * int(self.quantity)
-
-
-class Favorite(models.Model):
-	customer = models.ForeignKey(
-		AUTH_USER_MODEL,
-		on_delete=models.CASCADE
-	)
-	favorite = models.ForeignKey(Product, on_delete=models.CASCADE)
-
-	def __str__(self):
-		return f"{self.favorite}"
