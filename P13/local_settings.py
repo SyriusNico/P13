@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -151,8 +154,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51KhgjvBjHQ5DRC9EELeowiZIqc2AnGDR94FgSsxk9u2XUkznvzSXTheQ0z9MYkCVrhF1Vxto79uMTOO53uJC9har00kyHNa1xx'
 STRIPE_SECRET_KEY = 'sk_test_51KhgjvBjHQ5DRC9EEP0h2kfaQs5NUxuMjMiUeEPBoS1B9GFmCno9cxFyd6kepyeuioD1cbBdLWpLZgEZOB3JqDbE00Kerf0aLr'
-
-# import dj_database_url
-
-# DATABASES = {}
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
