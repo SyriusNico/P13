@@ -12,7 +12,6 @@ let close = document.querySelector(".close");
 let body = document.body;
 let category = document.querySelector(".title-collection").childNodes;
 category = category[1].innerHTML
-let addToWishList = document.getElementById('favorite');
 let cart = new Cart()
 
 function getPreviousElement(element,selector) {
@@ -53,14 +52,13 @@ function openModal() {
 					image.src = data[0].image;
 					brand.innerHTML = data[0].brand;
 					name.innerHTML = data[0].name;
-					addToWishList.value = data[0].name;
 					text.innerHTML = data[0].description;
 					price.innerHTML = data[0].price;
 					let productId = data[0].id;
 					let user = document.querySelector('.user');
 					user = parseInt(user.value)
 					let oneSize = getSize();
-					addOptions(data[0].sizes);;
+					addOptions(data[0].sizes);
 					addToCard(
 						productId, name.innerHTML, 
 						data[0].price, image.src, 
