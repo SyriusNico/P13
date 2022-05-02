@@ -5,7 +5,9 @@
 
 {% block content %}
 <div class="title-collection">
+	{% with product_list|first as product %}
 	<h1>{{ product.brand | capfirst }}</h1>
+	{% endwith %}
 </div>
 <div class="collection">
 	<div class="side-nav">
