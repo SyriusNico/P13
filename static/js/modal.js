@@ -58,7 +58,7 @@ function openModal() {
 					let user = document.querySelector('.user');
 					user = parseInt(user.value)
 					let oneSize = getSize();
-					addOptions(data[0].sizes);;
+					addOptions(data[0].sizes);
 					addToCard(
 						productId, name.innerHTML, 
 						data[0].price, image.src, 
