@@ -59,6 +59,7 @@ a:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: crimson;
 }
 
 .nav-content-resp {

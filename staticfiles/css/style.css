@@ -55,6 +55,13 @@ a:hover {
 	line-height: 80px;
 }
 
+.disclaimer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: crimson;
+}
+
 .nav-content-resp {
 	display: none;
 	list-style: none;
